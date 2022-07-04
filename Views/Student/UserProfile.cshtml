@@ -1,0 +1,34 @@
+﻿@model OnlineExamManagement.Models.Student
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<h2>Welcome @Model.Name</h2>
+
+<div>
+    <h4>Name:</h4>
+    <p>@Model.Name</p>
+
+    <h4>Email:</h4>
+    <p>@Model.Email</p>
+
+    <div>
+        <table border="1">
+            <tr>
+                <th>Marks 1</th>
+                <th>Marks 2</th>
+                <th>Marks 3</th>
+                <th>Marks 4</th>
+            </tr>
+            <tr>
+                <td>@Model.Marks1</td>
+                <td>@Model.Marks2</td>
+                <td>@Model.Marks3</td>
+                <td>@Model.Marks4</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+    
