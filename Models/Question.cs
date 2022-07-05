@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace OnlineExamManagement.Models
 {
     public class Question
@@ -15,6 +16,8 @@ namespace OnlineExamManagement.Models
         public string Ques { get; set; }
 
         [Required]
+        [ForeignKey("Course")]
+        public int CourseRefId { get; set; }
         public Course Course { get; set; }
 
         [Required]

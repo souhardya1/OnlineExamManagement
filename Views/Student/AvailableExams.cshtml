@@ -40,7 +40,23 @@
                     @Html.DisplayFor(modelItem => item.Date)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Course.Name)
+                    @{
+                        if (item.CourseRefId == 1)
+                        {
+                           <p>CSE</p>
+
+                        }
+                        else if (item.CourseRefId == 2)
+                        {
+                            <p>ECE</p>
+
+                        }
+                        else
+                        {
+                            <p>IT</p>
+                        }
+                    }
+
                 </td>
 
                 <td>

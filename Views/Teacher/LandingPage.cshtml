@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "LandingPage";
+}
+
+<h2>LandingPage</h2>
+
+<div class="container">
+    <div class="col-md-3">
+        <h1>Exam Column</h1>
+        <button class="btn-success">@Html.ActionLink("Go to Exams", "ViewExam", "Teacher")</button>
+    </div>
+    <div class="col-md-3">
+        <h1>Question Column</h1>
+        <button class="btn-success">@Html.ActionLink("Go to Questions", "ViewQuestions", "Teacher")</button>
+    </div>
+    <div class="col-md-3">
+        <h1>Leaderboard Column</h1>
+        <button class="btn-success">@Html.ActionLink("Go to Leaderboards", "Learderboard", "Teacher")</button>
+    </div>
+</div>

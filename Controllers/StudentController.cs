@@ -307,10 +307,6 @@ namespace OnlineExamManagement.Controllers
             }
         }
 
-        
-
-
-
         public ActionResult Logout()
         {
             Marks.Obtained = 0;

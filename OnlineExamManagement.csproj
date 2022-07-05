@@ -167,6 +167,8 @@
     <Compile Include="Controllers\QuestionApiController.cs" />
     <Compile Include="Controllers\StudentApiController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Controllers\TeacherExamApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,6 +180,10 @@
     <Compile Include="Migrations\202207010951384_AddingCourseRefIdToExamtable.cs" />
     <Compile Include="Migrations\202207010951384_AddingCourseRefIdToExamtable.designer.cs">
       <DependentUpon>202207010951384_AddingCourseRefIdToExamtable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207050446255_AddingCourserefidToQuestionsTable.cs" />
+    <Compile Include="Migrations\202207050446255_AddingCourserefidToQuestionsTable.designer.cs">
+      <DependentUpon>202207050446255_AddingCourserefidToQuestionsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -245,6 +251,17 @@
     <Content Include="Views\Student\MainExam.cshtml" />
     <Content Include="Views\Student\UserProfile.cshtml" />
     <Content Include="Views\Student\Result.cshtml" />
+    <Content Include="Views\Teacher\Login.cshtml" />
+    <Content Include="Views\Teacher\LandingPage.cshtml" />
+    <Content Include="Views\Teacher\CreateExam.cshtml" />
+    <Content Include="Views\Teacher\DeleteExam.cshtml" />
+    <Content Include="Views\Teacher\CreateQuestion.cshtml" />
+    <Content Include="Views\Teacher\ViewExam.cshtml" />
+    <Content Include="Views\Teacher\ViewQuestion.cshtml" />
+    <Content Include="Views\Teacher\EditQuestion.cshtml" />
+    <Content Include="Views\Teacher\DeleteQuestion.cshtml" />
+    <Content Include="Views\Teacher\LeaderBoard.cshtml" />
+    <Content Include="Views\Teacher\EditExam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -284,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207010951384_AddingCourseRefIdToExamtable.resx">
       <DependentUpon>202207010951384_AddingCourseRefIdToExamtable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207050446255_AddingCourserefidToQuestionsTable.resx">
+      <DependentUpon>202207050446255_AddingCourserefidToQuestionsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
