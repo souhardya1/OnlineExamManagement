@@ -19,12 +19,21 @@ namespace OnlineExamManagement.Controllers
 
             return Ok(studentlst);
         }
+
         [HttpGet]
         public IHttpActionResult GetStudentDetail(int id)
         {
             var studentDetail = db.Students.Where(x => x.Id == id).FirstOrDefault();
+            if(studentDetail != null)
+            {
+                return Ok(studentDetail);
+            }
+            else
+            {
+                return NotFound();
+            }
 
-            return Ok(studentDetail);
+            
         }
 
         [HttpPost]

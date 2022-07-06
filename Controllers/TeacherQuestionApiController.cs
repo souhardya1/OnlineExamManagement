@@ -21,8 +21,16 @@ namespace OnlineExamManagement.Controllers
         [HttpGet]
         public IHttpActionResult GetQuestions(int id)
         {
+
             var quesrow = db.Questions.Where(x => x.Id == id).FirstOrDefault();
-            return Ok(quesrow);
+            if (quesrow != null)
+            {
+                return Ok(quesrow);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]

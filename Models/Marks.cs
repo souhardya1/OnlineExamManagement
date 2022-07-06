@@ -8,5 +8,6 @@ namespace OnlineExamManagement.Models
     public static class Marks
     {
         public static int Obtained = 0;
+        public static int c = 0;
     }
 }

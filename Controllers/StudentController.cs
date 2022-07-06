@@ -9,84 +9,117 @@ using System.Net.Http;
 
 namespace OnlineExamManagement.Controllers
 {
-    
+    [HandleError]
     public class StudentController : Controller
     {
         MyDbContext db = new MyDbContext();
        
-
-
         public ActionResult Signup()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }          
         }
+
 
         [HttpPost]
         public ActionResult Signup(Student s)
         {
-            if (s != null)
+            try
             {
-                HttpClient client = new HttpClient();
-                List<Exam> activeExams = new List<Exam>();
-                client.BaseAddress = new Uri("https://localhost:44301/api/Studentapi");
-                var response = client.PostAsJsonAsync<Student>("StudentApi", s);
-                response.Wait();
-
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                if (s != null)
                 {
-                    return RedirectToAction("Login");
+                    var checkmail = db.Students.Where(x => x.Email == s.Email).FirstOrDefault();
+                    if (checkmail != null)
+                    {
+                        ViewBag.AlreadyRegistered = "This Email id is already registered. Please Log in";
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        HttpClient client = new HttpClient();
+                        client.BaseAddress = new Uri("https://localhost:44301/api/Studentapi");
+                        var response = client.PostAsJsonAsync<Student>("StudentApi", s);
+                        response.Wait();
+
+                        var test = response.Result;
+                        if (test.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Login");
+                        }
+                        else { return View("Signup"); }
+                    }
                 }
-                else { return View("Signup"); }
-
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new {msg = "Failed to Sign up"});
+                }
             }
-            else
+            catch(Exception e)
             {
-                return RedirectToAction("Index", "Home");
-            }
-
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }           
         }
+
 
         // GET: Student
         public ActionResult Login()
         {
-
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }           
         }
+
 
         [HttpPost]
         public ActionResult Login(Student s)
         {
-            if (IsValid(s))
+            try
             {
-                FormsAuthentication.SetAuthCookie(s.Email.ToString(), false);
-                Session["studentEmail"] = s.Email.ToString();
-                
-                Student stud = db.Students.Where(x=>x.Email == s.Email).FirstOrDefault();
-
-
-                Session["userId"] = stud.Id;
-                System.Diagnostics.Debug.WriteLine(s.Id);
-                //System.Diagnostics.Debug.WriteLine(s.Email);
-                if (s.Marks4 == null)
+                if (IsValid(s))
                 {
-                    Session["isEligible"] = 1;  // yes eligible
+                    FormsAuthentication.SetAuthCookie(s.Email.ToString(), false);
+                    Session["studentEmail"] = s.Email.ToString();
+
+                    Student stud = db.Students.Where(x => x.Email == s.Email).FirstOrDefault();
+
+
+                    Session["userId"] = stud.Id;
+                    System.Diagnostics.Debug.WriteLine(s.Id);
+                    //System.Diagnostics.Debug.WriteLine(s.Email);
+                    if (s.Marks4 == null)
+                    {
+                        Session["IsEligible"] = "1";  // yes eligible
+                    }
+                    else
+                    {
+                        Session["IsEligible"] = "0";  // no max number of exams completed
+
+                    }
+                    return RedirectToAction("AvailableExams");
                 }
                 else
                 {
-                    Session["isEligible"] = 0;  // no max number of exams completed
-
+                    ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
+                    return View();
                 }
-                return RedirectToAction("AvailableExams");
             }
-            else
+            catch (Exception e)
             {
-                ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
-                return View();
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
             }
-
-
         }
+
 
         public bool IsValid(Student s)
         {
@@ -97,221 +130,268 @@ namespace OnlineExamManagement.Controllers
             {
                 return (s.Email == cred.Email && s.Password == cred.Password);
             }
-
             else
             {
                 return false;
             }
-
         }
 
 
         [Authorize]
         public ActionResult AvailableExams()
         {
-            if (Session["studentEmail"] == null)
+            try
             {
+                if (Session["studentEmail"] == null)
+                {
 
-                return RedirectToAction("Login", "Student");
+                    return RedirectToAction("Login", "Student");
+                }
+                else
+                {
+                    HttpClient client = new HttpClient();
+                    List<Exam> activeExams = new List<Exam>();
+                    client.BaseAddress = new Uri("https://localhost:44301/api/Examapi");
+                    var response = client.GetAsync("ExamApi");
+                    response.Wait();
+
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        var display = test.Content.ReadAsAsync<List<Exam>>();
+                        display.Wait();
+
+                        activeExams = display.Result;
+                        return View(activeExams);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch available Exams" });
+                    }
+                }
             }
-            else
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }   
+        }
+
+
+        [Authorize]
+        [NoDirectAccess]
+        public ActionResult MainExam(int id,int qid = 0)
+        {
+            try
             {
                 HttpClient client = new HttpClient();
-                List<Exam> activeExams = new List<Exam>();
-                client.BaseAddress = new Uri("https://localhost:44301/api/Examapi");
-                var response = client.GetAsync("ExamApi");
+                List<Question> examQuestions = new List<Question>();
+                string apiUrl = "https://localhost:44301/api/Questionapi/" + id;
+                client.BaseAddress = new Uri(apiUrl);
+                var response = client.GetAsync(apiUrl);
+
+
+
                 response.Wait();
 
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
-                    var display = test.Content.ReadAsAsync<List<Exam>>();
+                    var display = test.Content.ReadAsAsync<List<Question>>();
                     display.Wait();
 
-                    activeExams = display.Result;
-                }
-                return View(activeExams);
+                    if (qid != 10)
+                    {
+                        examQuestions = display.Result;
+                        var questionData = examQuestions[qid];
+                        var index = qid + 1;
 
-            }
-            
-        }
+                        Session["QuestionCourse"] = id;
+                        ViewData["QuestionIndex"] = index;
 
-
-
-        [Authorize]
-        
-        public ActionResult MainExam(int id,int qid = 0)
-        {
-            HttpClient client = new HttpClient();
-            List<Question> examQuestions = new List<Question>();
-            string apiUrl = "https://localhost:44301/api/Questionapi/"+id;
-            client.BaseAddress = new Uri(apiUrl);
-            var response = client.GetAsync(apiUrl);
-
-
-  
-            response.Wait();
-
-            var test = response.Result;
-
-            if (test.IsSuccessStatusCode)
-            {
-                var display = test.Content.ReadAsAsync<List<Question>>();
-                display.Wait();
-
-                if (qid != 10)
-                {
-                    examQuestions = display.Result;
-                    var questionData = examQuestions[qid];
-                    var index = qid + 1;
-
-                    Session["QuestionCourse"] = id;
-                    ViewData["QuestionIndex"] = index;
-
-                    return View(questionData);
+                        return View(questionData);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Result");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("Result");
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to find Questions for this Exam" });
                 }
-                
+            }
+            catch (Exception e)
+            {   
 
-            }
-            else
-            {
-                return RedirectToAction("AvailableExams");
-            }
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }           
         }
+
 
         [HttpPost]
         public ActionResult MainExam(string choice)
         {
-            int courseid;
-            int qid;
-            
-
-            string url = Request.Url.ToString();
-            if (url.Length == 42)
+            try
             {
-                courseid = int.Parse(url[41].ToString());
-                qid = 0;
+                int courseid;
+                int qid;
+
+
+                string url = Request.Url.ToString();
+                if (url.Length == 42)
+                {
+                    courseid = int.Parse(url[41].ToString());
+                    qid = 0;
+                }
+                else if (url.Length == 44)
+                {
+                    courseid = int.Parse(url[41].ToString());
+                    qid = int.Parse(url[43].ToString()) - 1;
+                }
+                else if (url.Length == 45)
+                {
+                    qid = 9;
+                    courseid = 1;
+                }
+                else
+                {
+                    qid = 0;
+                    courseid = 1;
+                }
+
+                var questionlst = db.Questions.Where(x => x.Course.Id == courseid).ToList();
+                var question = questionlst[qid];
+
+                //System.Diagnostics.Debug.WriteLine(url.Length);
+                //System.Diagnostics.Debug.WriteLine(question.Correct);
+                //System.Diagnostics.Debug.WriteLine(qid);
+                //System.Diagnostics.Debug.WriteLine(question.Correct);
+                //System.Diagnostics.Debug.WriteLine(choice);
+                //System.Diagnostics.Debug.WriteLine(Marks.Obtained);
+                //bool what = (question.Correct.ToLower() == choice.ToLower());
+                //System.Diagnostics.Debug.WriteLine(what);
+                //System.Diagnostics.Debug.WriteLine("hehe");
+
+                Marks.c = Marks.c + 1;
+                if (Marks.c <= 10)
+                {
+                    if (question.Correct.ToLower() == choice.ToLower())
+                    {
+                        Marks.Obtained = Marks.Obtained + 10;
+                    }
+                    //System.Diagnostics.Debug.WriteLine(Marks.Obtained);
+                }
+                return RedirectToAction("MainExam");
             }
-            else if(url.Length == 44)
+            catch (Exception e)
             {
-                courseid = int.Parse(url[41].ToString());
-                qid = int.Parse(url[43].ToString())-1;
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
             }
-            else if(url.Length == 45)
-            {
-                qid = 9;
-                courseid = 1;
-            }
-            else
-            {
-                qid = 0;
-                courseid = 1;
-            }
-
-            var questionlst = db.Questions.Where(x => x.Course.Id == courseid).ToList();
-            var question = questionlst[qid];
-
-            System.Diagnostics.Debug.WriteLine(url.Length);
-            System.Diagnostics.Debug.WriteLine(question.Correct);
-            System.Diagnostics.Debug.WriteLine(qid);
-            System.Diagnostics.Debug.WriteLine(question.Correct);
-            System.Diagnostics.Debug.WriteLine(choice);
-            System.Diagnostics.Debug.WriteLine(Marks.Obtained);
-            bool what = (question.Correct.ToLower() == choice.ToLower());
-            System.Diagnostics.Debug.WriteLine(what);
-            System.Diagnostics.Debug.WriteLine("hehe");
-
-
-
-
-
-            if (question.Correct.ToLower() == choice.ToLower())
-            {
-
-                Marks.Obtained=Marks.Obtained+10;
-                System.Diagnostics.Debug.WriteLine(Marks.Obtained);
-            }
-            return RedirectToAction("MainExam");
         }
+
 
         [Authorize]
+        [NoDirectAccess]
         public ActionResult Result()
         {
-            
-            if (Session["studentEmail"] == null)
+            try
             {
-
-                return RedirectToAction("Login", "Student");
-
-            }
-            else
-            {
-
-                ViewBag.marksObtained = Marks.Obtained;
-                int id = int.Parse(Session["userId"].ToString());
-
-
-                HttpClient client = new HttpClient();
-                var url = "https://localhost:44301/api/Studentapi/"+id;
-                client.BaseAddress = new Uri(url);
-                var response = client.PutAsJsonAsync<int>(url,id);
-                response.Wait();
-
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                if (Session["studentEmail"] == null)
                 {
-                    var display = test.Content.ReadAsAsync<Student>();
-                    display.Wait();
-                }
-                return View();
 
+                    return RedirectToAction("Login", "Student");
+
+                }
+                else
+                {
+                    ViewBag.marksObtained = Marks.Obtained;
+                    int id = int.Parse(Session["userId"].ToString());
+
+
+                    HttpClient client = new HttpClient();
+                    var url = "https://localhost:44301/api/Studentapi/" + id.ToString();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.PutAsJsonAsync<int>(url, id);
+                    response.Wait();
+
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        var display = test.Content.ReadAsAsync<Student>();
+                        display.Wait();
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to generate result" });
+                    }
+                }
             }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }           
         }
+
 
         [Authorize]
         public ActionResult UserProfile()
         {
-            if (Session["userId"] == null)
+            try
             {
-
-                return RedirectToAction("Login", "Student");
-            }
-            else
-            {
-                int id = int.Parse(Session["userId"].ToString());
-
-                HttpClient client = new HttpClient();
-                Student studentDetails = null;
-                var url = "https://localhost:44301/api/Studentapi/"+id;
-                client.BaseAddress = new Uri(url);
-                var response = client.GetAsync(url);
-                response.Wait();
-
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                if (Session["userId"] == null)
                 {
-                    var display = test.Content.ReadAsAsync<Student>();
-                    display.Wait();
 
-                    studentDetails = display.Result;
-                    System.Diagnostics.Debug.WriteLine(id);
-                    System.Diagnostics.Debug.WriteLine(studentDetails);
-                    System.Diagnostics.Debug.WriteLine("hoho");
+                    return RedirectToAction("Login", "Student");
                 }
-                return View(studentDetails);
+                else
+                {
+                    int id = int.Parse(Session["userId"].ToString());
 
+                    HttpClient client = new HttpClient();
+                    Student studentDetails = null;
+                    var url = "https://localhost:44301/api/Studentapi/"+id;
+                    client.BaseAddress = new Uri(url);
+                    var response = client.GetAsync(url);
+                    response.Wait();
+
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        var display = test.Content.ReadAsAsync<Student>();
+                        display.Wait();
+
+                        studentDetails = display.Result;
+                        //System.Diagnostics.Debug.WriteLine(id);
+                        //System.Diagnostics.Debug.WriteLine(studentDetails);
+                        //System.Diagnostics.Debug.WriteLine("hoho");
+                        return View(studentDetails);
+                    }
+                    else
+                    {
+                            return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch User Details" });
+                    }
+                }
             }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }          
         }
+
 
         public ActionResult Logout()
         {
             Marks.Obtained = 0;
+            Marks.c = 0;
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
+        }
+
+        public ActionResult ErrorNotFound(string msg="An Unexpected Error Occured")
+        {
+            ViewBag.ExceptionE = msg;
+            return View();
         }
     }
 }

@@ -5,11 +5,17 @@
 }
 
 <h2>CreateExam</h2>
-
-@using (Html.BeginForm()) 
+@Html.Raw(ViewBag.ExamCreateAlert)
+@if (!string.IsNullOrEmpty(ViewBag.ExamCreateAlert2))
+{
+    <script type="text/javascript">
+        alert("@ViewBag.ExamCreateAlert2");
+    </script>
+}
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Exam</h4>
         <hr />
@@ -47,11 +53,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CourseRefId", new List<SelectListItem>
+                @Html.DropDownList("Active", new List<SelectListItem>
                                                       {
                                                            new SelectListItem{ Text="Yes", Value = "1" },
                                                            new SelectListItem{ Text="No", Value = "0" },
-                                                        
+
                                                       })
                 @Html.ValidationMessageFor(model => model.Active, "Active is required", new { @class = "text-danger" })
             </div>
@@ -66,5 +72,5 @@
 }
 @Html.Raw(ViewData["CreateSuccess"])
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "ViewExam")
 </div>

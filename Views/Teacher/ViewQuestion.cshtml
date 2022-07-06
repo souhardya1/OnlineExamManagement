@@ -7,7 +7,7 @@
 <h2>ViewQuestion</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateQuestion","Teacher")
+    @Html.ActionLink("Create New", "CreateQuestion", "Teacher")
 </p>
 <table class="table">
     <tr>
@@ -35,49 +35,52 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Ques)
-        </td>
-        <td>
-            @{
-                if (item.CourseRefId == 1)
-                {
-                    <p>CSE</p>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ques)
+            </td>
+            <td>
+                @{
+                    if (item.CourseRefId == 1)
+                    {
+                        <p>CSE</p>
 
-                }
-                else if (item.CourseRefId == 2)
-                {
-                    <p>ECE</p>
+                    }
+                    else if (item.CourseRefId == 2)
+                    {
+                        <p>ECE</p>
 
+                    }
+                    else
+                    {
+                        <p>IT</p>
+                    }
                 }
-                else
-                {
-                    <p>IT</p>
-                }
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OptionA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OptionB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OptionC)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OptionD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Correct)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditQuestion", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteQuestion", new { id = item.Id })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OptionD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correct)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditQuestion", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteQuestion", new { id = item.Id })
+            </td>
+        </tr>
+    }
 </table>
+
+@Html.ActionLink("Back to Home", "LandingPage", "Teacher")

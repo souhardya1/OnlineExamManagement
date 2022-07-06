@@ -9,6 +9,8 @@ using System.Net.Http;
 
 namespace OnlineExamManagement.Controllers
 {
+    [HandleError]
+    [NoDirectAccess]
     public class TeacherController : Controller
     {
         MyDbContext db = new MyDbContext();
@@ -21,25 +23,32 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public ActionResult Login(Teacher t)
         {
-            if (IsValid(t))
+            try
             {
-                FormsAuthentication.SetAuthCookie(t.Email.ToString(), false);
-                Session["TeacherEmail"] = t.Email.ToString();
+                if (IsValid(t))
+                {
+                    FormsAuthentication.SetAuthCookie(t.Email.ToString(), false);
+                    Session["TeacherEmail"] = t.Email.ToString();
 
-                Teacher teac = db.Teachers.Where(x => t.Email == t.Email).FirstOrDefault();
+                    Teacher teac = db.Teachers.Where(x => t.Email == t.Email).FirstOrDefault();
 
 
-                Session["userId"] = teac.Id;
+                    Session["userId"] = teac.Id;
 
-                //System.Diagnostics.Debug.WriteLine(teac.Id);
-                //System.Diagnostics.Debug.WriteLine(t.Email);
+                    //System.Diagnostics.Debug.WriteLine(teac.Id);
+                    //System.Diagnostics.Debug.WriteLine(t.Email);
 
-                return RedirectToAction("LandingPage");
+                    return RedirectToAction("LandingPage");
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
+                    return View();
+                }
             }
-            else
+            catch (Exception e)
             {
-                ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
-                return View();
+                return RedirectToAction("ErrorNotFound","Error",new { msg = e.Message });
             }
         }
 
@@ -61,6 +70,7 @@ namespace OnlineExamManagement.Controllers
             }
         }
 
+
         [Authorize]
         public ActionResult LandingPage()
         {
@@ -70,188 +80,218 @@ namespace OnlineExamManagement.Controllers
         [Authorize]
         public ActionResult ViewExam()
         {
-            List<Exam> examlst = new List<Exam>();
-            string url = "https://localhost:44301/api/TeacherExamApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                var display = test.Content.ReadAsAsync<List<Exam>>();
-                display.Wait();
-                examlst = display.Result;
+                List<Exam> examlst = new List<Exam>();
+                string url = "https://localhost:44301/api/TeacherExamApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<List<Exam>>();
+                    display.Wait();
+                    examlst = display.Result;
+                    return View(examlst);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch Exams" });
+                }
             }
-
-            return View(examlst);
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }             
         }
+
 
         [Authorize]
         public ActionResult CreateExam()
         {
-            IList<Course> CourseCategory = db.Courses.ToList();
-            IEnumerable<SelectListItem> selectListCategory =
-                 from c in CourseCategory
-                 select new SelectListItem
-                 {
-                     Text = c.Name,
-                     Value = c.Id.ToString()
-                 };
-            ViewBag.CourseCategoryData = selectListCategory;
-
-            List<SelectListItem> activeListCategory = new List<SelectListItem>();
-            activeListCategory.Add(new SelectListItem
-            {
-                Text = "Yes",
-                Value = "1"
-            });
-            activeListCategory.Add(new SelectListItem
-            {
-                Text = "No",
-                Value = "0"
-            });
-
-            ViewBag.ActiveList = activeListCategory;
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateExam(Exam e)
         {
-            string url = "https://localhost:44301/api/TeacherExamApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.PostAsJsonAsync<Exam>(url, e);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                ViewData["CreateSuccess"] = "<script>Exam Inserted Successfully</script>";
-                return RedirectToAction("ViewExam");
+                string url = "https://localhost:44301/api/TeacherExamApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.PostAsJsonAsync<Exam>(url, e);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("ViewExam");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Create Exam" });
+                }
             }
-            return View();
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = ex.Message });
+            }         
         }
+
 
         [Authorize]
         public ActionResult EditExam(int id)
         {
-            Exam e = null; ;
-            string url = "https://localhost:44301/api/TeacherExamApi/"+id.ToString();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+
+            try
             {
-                var display = test.Content.ReadAsAsync<Exam>();
-                display.Wait();
-                e = display.Result;
+                Exam e = null; ;
+                string url = "https://localhost:44301/api/TeacherExamApi/" + id.ToString();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<Exam>();
+                    display.Wait();
+                    e = display.Result;
+                    return View(e);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch Exam with Id" });
+                }
             }
-
-            IList<Course> CourseCategory = db.Courses.ToList();
-            IEnumerable<SelectListItem> selectListCategory =
-                 from c in CourseCategory
-                 select new SelectListItem
-                 {
-                     Text = c.Name,
-                     Value = c.Id.ToString()
-                 };
-            ViewBag.CourseData = selectListCategory;
-            List<SelectListItem> activeListCategory = new List<SelectListItem>();
-            activeListCategory.Add(new SelectListItem
+            catch (Exception e)
             {
-                Text = "Yes",
-                Value = "1"
-            });
-            activeListCategory.Add(new SelectListItem
-            {
-                Text = "No",
-                Value = "0"
-            });
-
-            ViewBag.ActiveData = activeListCategory;
-            
-
-            return View(e);
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }       
         }
+
 
         [HttpPost]
         public ActionResult EditExam(Exam e)
         {
-            string url = "https://localhost:44301/api/TeacherExamApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.PutAsJsonAsync<Exam>(url, e);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                ViewData["CreateSuccess"] = "<script>Exam Inserted Successfully</script>";
-                return RedirectToAction("ViewExam");
+                string url = "https://localhost:44301/api/TeacherExamApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.PutAsJsonAsync<Exam>(url, e);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("ViewExam");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Edit Exam with Id" });
+                }
+                
             }
-            return View();
+            catch (Exception ex)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = ex.Message });
+            }          
         }
 
-        [Authorize]      
+
+        [Authorize]
         public ActionResult DeleteExam(int id)
         {
-            Exam e = null; ;
-            string url = "https://localhost:44301/api/TeacherExamApi/" + id.ToString();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                var display = test.Content.ReadAsAsync<Exam>();
-                display.Wait();
-                e = display.Result;
+                Exam e = null; ;
+                string url = "https://localhost:44301/api/TeacherExamApi/" + id.ToString();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<Exam>();
+                    display.Wait();
+                    e = display.Result;
+                    return View(e);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to find Exam with Id" });
+                }
             }
-            return View(e);
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }
         }
+            
+        
 
         [HttpPost,ActionName("DeleteExam")]
         public ActionResult DeleteExamConfirmed(int id)
         {
-            string url = "https://localhost:44301/api/TeacherExamApi/"+id.ToString();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.DeleteAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                ViewData["DeleteSuccess"] = "<script>Exam Deleted Successfully</script>";
-                return RedirectToAction("ViewExam");
-            }
+                string url = "https://localhost:44301/api/TeacherExamApi/" + id.ToString();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.DeleteAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("ViewExam");
+                }
 
-            return View();
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Delete Exam" });
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }          
         }
+
+
+
 
         // Question Part
         [Authorize]
         public ActionResult ViewQuestion()
         {
-            List<Question> queslst = new List<Question>();
-            string url = "https://localhost:44301/api/TeacherQuestionApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                var display = test.Content.ReadAsAsync<List<Question>>();
-                display.Wait();
-                queslst = display.Result;
+                List<Question> queslst = new List<Question>();
+                string url = "https://localhost:44301/api/TeacherQuestionApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<List<Question>>();
+                    display.Wait();
+                    queslst = display.Result;
+                    return View(queslst);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch Quesion" });
+                }           
             }
-
-            return View(queslst);
-
-
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }
         }
 
         [Authorize]
@@ -263,122 +303,187 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public ActionResult CreateQuestion(Question q)
         {
-            string url = "https://localhost:44301/api/TeacherQuestionApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.PostAsJsonAsync<Question>(url, q);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                ViewData["CreateSuccess"] = "<script>alert(Exam Inserted Successfully)</script>";
-                return RedirectToAction("ViewQuestion");
-            }
-            return View();
+                string url = "https://localhost:44301/api/TeacherQuestionApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.PostAsJsonAsync<Question>(url, q);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
 
+                    return RedirectToAction("ViewQuestion");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to create Question" }); 
+                }
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }
         }
+
 
         [Authorize]
         public ActionResult EditQuestion(int id)
         {
-            Question q = null; ;
-            string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                var display = test.Content.ReadAsAsync<Question>();
-                display.Wait();
-                q = display.Result;
+                Question q = null; ;
+                string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<Question>();
+                    display.Wait();
+                    q = display.Result;
+                    return View(q);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to find Question with Id" });
+                }
             }
-            return View(q);
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }
         }
+
 
         [HttpPost]
         public ActionResult EditQuestion(Question q)
         {
-            string url = "https://localhost:44301/api/TeacherQuestionApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.PutAsJsonAsync<Question>(url, q);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                ViewData["EditSuccess"] = "<script>alert('Question Edited Successfully')</script>";
-                return RedirectToAction("ViewExam");
-            }
+                string url = "https://localhost:44301/api/TeacherQuestionApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.PutAsJsonAsync<Question>(url, q);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
 
-            return View();
+                    return RedirectToAction("ViewQuestion");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to edit Question with Id" });
+                }
+
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }           
         }
 
 
         [Authorize]
         public ActionResult DeleteQuestion(int id)
         {
-            Question q = null; ;
-            string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                var display = test.Content.ReadAsAsync<Question>();
-                display.Wait();
-                q = display.Result;
+                Question q = null; ;
+                string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<Question>();
+                    display.Wait();
+                    q = display.Result;
+                    return View(q);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to find Question with Id" });
+                }
             }
-            return View(q);
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }            
         }
+
 
         [HttpPost, ActionName("DeleteQuestion")]
         public ActionResult DeleteQuestionConfirmed(int id)
         {
-            string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.DeleteAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                ViewData["DeleteSuccess"] = "<script>alert('Exam Deleted Successfully')</script>";
-                return RedirectToAction("ViewQuestion");
-            }
+                string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.DeleteAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
 
-            return View();
+                    return RedirectToAction("ViewQuestion");
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to delete Question with Id" });
+                }   
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }           
         }
+
 
         [Authorize]
         public ActionResult LeaderBoard()
         {
-            List<Student> studentlst = new List<Student>();
-            string url = "https://localhost:44301/api/StudentApi";
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(url);
-            var response = client.GetAsync(url);
-            response.Wait();
-            var test = response.Result;
-            if (test.IsSuccessStatusCode)
+            try
             {
-                var display = test.Content.ReadAsAsync<List<Student>>();
-                display.Wait();
-                studentlst = display.Result;
-            }
+                List<Student> studentlst = new List<Student>();
+                string url = "https://localhost:44301/api/StudentApi";
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(url);
+                var response = client.GetAsync(url);
+                response.Wait();
+                var test = response.Result;
+                if (test.IsSuccessStatusCode)
+                {
+                    var display = test.Content.ReadAsAsync<List<Student>>();
+                    display.Wait();
+                    studentlst = display.Result;
+                    return View(studentlst);
+                }
+                else
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch Students" });
+                }
 
-            return View(studentlst);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+            }  
         }
+
 
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
-
 
     }
 }

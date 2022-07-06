@@ -162,6 +162,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExamApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionApiController.cs" />
@@ -185,6 +186,18 @@
     <Compile Include="Migrations\202207050446255_AddingCourserefidToQuestionsTable.cs" />
     <Compile Include="Migrations\202207050446255_AddingCourserefidToQuestionsTable.designer.cs">
       <DependentUpon>202207050446255_AddingCourserefidToQuestionsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207060903398_ExamDateTypeChangedFromStringToDateTime.cs" />
+    <Compile Include="Migrations\202207060903398_ExamDateTypeChangedFromStringToDateTime.designer.cs">
+      <DependentUpon>202207060903398_ExamDateTypeChangedFromStringToDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207060909307_ExamDateTypeChangedFromStringToDateTimeonlyDate.cs" />
+    <Compile Include="Migrations\202207060909307_ExamDateTypeChangedFromStringToDateTimeonlyDate.designer.cs">
+      <DependentUpon>202207060909307_ExamDateTypeChangedFromStringToDateTimeonlyDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.cs" />
+    <Compile Include="Migrations\202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.designer.cs">
+      <DependentUpon>202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -263,6 +276,7 @@
     <Content Include="Views\Teacher\DeleteQuestion.cshtml" />
     <Content Include="Views\Teacher\LeaderBoard.cshtml" />
     <Content Include="Views\Teacher\EditExam.cshtml" />
+    <Content Include="Views\Error\ErrorNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -305,6 +319,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207050446255_AddingCourserefidToQuestionsTable.resx">
       <DependentUpon>202207050446255_AddingCourserefidToQuestionsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207060903398_ExamDateTypeChangedFromStringToDateTime.resx">
+      <DependentUpon>202207060903398_ExamDateTypeChangedFromStringToDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207060909307_ExamDateTypeChangedFromStringToDateTimeonlyDate.resx">
+      <DependentUpon>202207060909307_ExamDateTypeChangedFromStringToDateTimeonlyDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.resx">
+      <DependentUpon>202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
