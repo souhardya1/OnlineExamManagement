@@ -210,7 +210,7 @@ namespace OnlineExamManagement.Controllers
                 display.Wait();
                 e = display.Result;
             }
-            return View();
+            return View(e);
         }
 
         [HttpPost,ActionName("DeleteExam")]
@@ -235,7 +235,23 @@ namespace OnlineExamManagement.Controllers
         [Authorize]
         public ActionResult ViewQuestion()
         {
-            return View();
+            List<Question> queslst = new List<Question>();
+            string url = "https://localhost:44301/api/TeacherQuestionApi";
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.GetAsync(url);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<List<Question>>();
+                display.Wait();
+                queslst = display.Result;
+            }
+
+            return View(queslst);
+
+
         }
 
         [Authorize]
@@ -247,37 +263,114 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public ActionResult CreateQuestion(Question q)
         {
+            string url = "https://localhost:44301/api/TeacherQuestionApi";
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.PostAsJsonAsync<Question>(url, q);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                ViewData["CreateSuccess"] = "<script>alert(Exam Inserted Successfully)</script>";
+                return RedirectToAction("ViewQuestion");
+            }
             return View();
+
         }
 
         [Authorize]
-        public ActionResult EditQuestion()
+        public ActionResult EditQuestion(int id)
         {
-            return View();
+            Question q = null; ;
+            string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.GetAsync(url);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<Question>();
+                display.Wait();
+                q = display.Result;
+            }
+            return View(q);
         }
 
-        [HttpPut]
+        [HttpPost]
         public ActionResult EditQuestion(Question q)
         {
+            string url = "https://localhost:44301/api/TeacherQuestionApi";
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.PutAsJsonAsync<Question>(url, q);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                ViewData["EditSuccess"] = "<script>alert('Question Edited Successfully')</script>";
+                return RedirectToAction("ViewExam");
+            }
+
             return View();
         }
 
 
         [Authorize]
-        public ActionResult DeleteQuestion()
+        public ActionResult DeleteQuestion(int id)
         {
+            Question q = null; ;
+            string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.GetAsync(url);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<Question>();
+                display.Wait();
+                q = display.Result;
+            }
+            return View(q);
+        }
+
+        [HttpPost, ActionName("DeleteQuestion")]
+        public ActionResult DeleteQuestionConfirmed(int id)
+        {
+            string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.DeleteAsync(url);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                ViewData["DeleteSuccess"] = "<script>alert('Exam Deleted Successfully')</script>";
+                return RedirectToAction("ViewQuestion");
+            }
+
             return View();
         }
 
-        [HttpDelete]
-        public ActionResult DeleteQuestion(Question q)
-        {
-            return View();
-        }
-
+        [Authorize]
         public ActionResult LeaderBoard()
         {
-            return View();
+            List<Student> studentlst = new List<Student>();
+            string url = "https://localhost:44301/api/StudentApi";
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(url);
+            var response = client.GetAsync(url);
+            response.Wait();
+            var test = response.Result;
+            if (test.IsSuccessStatusCode)
+            {
+                var display = test.Content.ReadAsAsync<List<Student>>();
+                display.Wait();
+                studentlst = display.Result;
+            }
+
+            return View(studentlst);
         }
 
         public ActionResult Logout()

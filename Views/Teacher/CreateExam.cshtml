@@ -25,8 +25,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CourseRefId, "CourseRefId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CourseRefId", new SelectList(ViewBag.CourseCategoryData, "Value", "Text"))
-                @Html.ValidationMessageFor(model => model.CourseRefId, "", new { @class = "text-danger" })
+                @Html.DropDownList("CourseRefId", new List<SelectListItem>
+                                                      {
+                                                           new SelectListItem{ Text="Computer Science and Engineering", Value = "1" },
+                                                           new SelectListItem{ Text="Electronics and Communication Engineering", Value = "2" },
+                                                           new SelectListItem{ Text="Information Technology", Value = "3" },
+
+                                                      })
+                @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -41,8 +47,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Active", new SelectList(ViewBag.ActiveList, "Value", "Text"))
-                @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                @Html.DropDownList("CourseRefId", new List<SelectListItem>
+                                                      {
+                                                           new SelectListItem{ Text="Yes", Value = "1" },
+                                                           new SelectListItem{ Text="No", Value = "0" },
+                                                        
+                                                      })
+                @Html.ValidationMessageFor(model => model.Active, "Active is required", new { @class = "text-danger" })
             </div>
         </div>
 

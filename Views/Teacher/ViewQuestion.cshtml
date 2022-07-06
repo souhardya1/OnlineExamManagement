@@ -7,7 +7,7 @@
 <h2>ViewQuestion</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateQuestion","Teacher")
 </p>
 <table class="table">
     <tr>
@@ -37,11 +37,27 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Name)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Ques)
+        </td>
+        <td>
+            @{
+                if (item.CourseRefId == 1)
+                {
+                    <p>CSE</p>
+
+                }
+                else if (item.CourseRefId == 2)
+                {
+                    <p>ECE</p>
+
+                }
+                else
+                {
+                    <p>IT</p>
+                }
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.OptionA)
@@ -59,11 +75,9 @@
             @Html.DisplayFor(modelItem => item.Correct)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "EditQuestion", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteQuestion", new { id = item.Id })
         </td>
     </tr>
 }
-
 </table>

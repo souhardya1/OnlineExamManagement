@@ -13,6 +13,13 @@ namespace OnlineExamManagement.Controllers
         MyDbContext db = new MyDbContext();
 
         [HttpGet]
+        public IHttpActionResult GetStudentDetail()
+        {
+            var studentlst = db.Students.ToList();
+
+            return Ok(studentlst);
+        }
+        [HttpGet]
         public IHttpActionResult GetStudentDetail(int id)
         {
             var studentDetail = db.Students.Where(x => x.Id == id).FirstOrDefault();

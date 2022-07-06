@@ -12,19 +12,30 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Course.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Course.Name)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Ques)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Ques)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseRefId)
+        </dt>
+
+        <dd>
+            @{ if (Model.CourseRefId == 1)
+                {
+                    <p>CSE</p>
+                }
+                else if (Model.CourseRefId == 2)
+                {
+                    <p>ECE</p>
+                }
+                else
+                {
+                    <p>IT</p>
+                }
+            }
         </dd>
 
         <dt>
@@ -74,7 +85,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "ViewQuestion")
         </div>
     }
 </div>
