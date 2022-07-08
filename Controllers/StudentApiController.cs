@@ -1,6 +1,7 @@
 ﻿using OnlineExamManagement.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -47,40 +48,64 @@ namespace OnlineExamManagement.Controllers
         [HttpPut]
         public IHttpActionResult EditStudent(int id)
         {
-            var stud = db.Students.Where(x => x.Id ==id).FirstOrDefault();
-            if (stud != null)
+            try
             {
-                if (stud.Marks1 == null)
+                var stud = db.Students.Where(x => x.Id == id).FirstOrDefault();
+                System.Diagnostics.Debug.WriteLine("Inside try block");
+                if (stud != null)
                 {
-                    stud.Marks1 = Marks.Obtained;
-                    db.SaveChanges();
-                }
-                else if (stud.Marks2 == null)
-                {
-                    stud.Marks2 = Marks.Obtained;
-                    db.SaveChanges();
-                }
-                else if (stud.Marks3 == null)
-                {
-                    stud.Marks3 = Marks.Obtained;
-                    db.SaveChanges();
-                }
-                else if (stud.Marks4 == null)
-                {
-                    stud.Marks4 = Marks.Obtained;
-                    db.SaveChanges();
+                    if (stud.Marks1 == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Inside if marks1");
+                        stud.Marks1 = Marks.Obtained;
+                        db.SaveChanges();
+                    }
+                    else if (stud.Marks2 == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Inside if marks2");
+                        stud.Marks2 = Marks.Obtained;
+                        db.SaveChanges();
+                    }
+                    else if (stud.Marks3 == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Inside if marks3");
+                        stud.Marks3 = Marks.Obtained;
+                        db.SaveChanges();
+                    }
+                    else if (stud.Marks4 == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Inside if marks4");
+                        System.Diagnostics.Debug.WriteLine(stud.Password);
+
+                        stud.Password = stud.Password;
+                        stud.Marks4 = Marks.Obtained;
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                    return Ok();
+
                 }
                 else
                 {
-                    return BadRequest();
+                    return NotFound();
                 }
-                return Ok();
-
             }
-            else
+            catch (DbEntityValidationException ex)
             {
-                return NotFound();
-            } 
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+
+                    }
+                }
+                return null;
+            }
+            
         }
     }
 }

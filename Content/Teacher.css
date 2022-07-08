@@ -1,0 +1,1058 @@
+﻿
+/*TEACHER SIGNIN FORM*/
+
+/*Page color*/
+.t_signin {
+    background: url('images/loginmain.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*Components*/
+.t_signinform {
+    width: 350px;
+    height: auto;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.3);
+    background-image: linear-gradient(#0099ff, white);
+    
+    padding: 10px;
+    margin: 10% auto 0;
+    margin-left: 60%;
+    text-align: center;
+    border-radius: 15px;
+    justify-content: center;
+}
+
+
+    .t_signinform h1 {
+        color: black;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    .t_signinform .input-box {
+        border-radius: 30px;
+        padding: 10px;
+        margin: 10px 0;
+        width: 250px;
+        border: transparent;
+        outline: none;
+        margin-bottom: 20px;
+    }
+
+    .t_signinform button {
+        color: #fff;
+        width: 60%;
+        padding: 10px;
+        border-radius: 20px;
+        font-size: 15px;
+        margin: 10px 0;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        margin-bottom: 25px;
+    }
+
+
+    .t_signinform .t_signin-btn {
+        color: white;
+        background-color: #0099ff;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+        .t_signinform .t_signin-btn:hover {
+            background-color: white;
+            color: #0099ff;
+            transition-delay: 0.25s;
+        }
+
+    .t_signinform .logo {
+        font-size: 40px;
+        color: white;
+        margin-bottom: 15px;
+        margin-top: 10px;
+    }
+
+/*TEACHER LANDING PAGE*/
+
+
+/*Page color*/
+.t_landing {
+    background-image: url('images/loginback1.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+    /*Components*/
+    .t_landing .buttons {
+        padding: 300px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+        .t_landing .buttons a {
+            background-color: #0099ff;
+            border: transparent;
+            border-radius: 15px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        }
+
+            .t_landing .buttons a:hover {
+                background-color: #fff;
+                color: #0099ff;
+                font-size: 25px;
+                box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+                text-decoration: none;
+                transition-delay: 0.25s;
+            }
+
+
+/*TEACHER LEADERBOARD PAGE*/
+
+/*Page color*/
+.t_leaderboard {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 150px;
+}
+
+
+    /*Components*/
+
+    .t_leaderboard h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+    .t_leaderboard .leadtable table, th, td {
+        margin-top: 10px;
+        font-size: 15px;
+        border: 1px solid rgb(192, 192, 192);
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    .t_leaderboard .leadtable th, td {
+        padding: 10px;
+    }
+
+    .t_leaderboard .leadtable th {
+        background-color: blue;
+        color: white;
+        font-size: 20px;
+    }
+
+    .t_leaderboard .leadtable table {
+        width: 100%;
+    }
+
+
+    .t_leaderboard .leadtable {
+        background-color: #fff;
+        border-radius: 15px;
+        max-height: 550px;
+        height: 550px;
+        width: 80%;
+        overflow: auto hidden;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+
+
+
+
+/*TEACHER VIEWEXAM PAGE*/
+
+/*Page color*/
+.t_viewexam {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*Components*/
+
+.t_viewexam {
+    padding-top: 100px;
+}
+
+    .t_viewexam h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+    .t_viewexam .t_examtable table, th, td {
+        margin-top: 10px;
+        font-size: 15px;
+        border: 1px solid rgb(192, 192, 192);
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    .t_viewexam .t_examtable th, td {
+        padding: 10px;
+    }
+
+    .t_viewexam .t_examtable th {
+        background-color: #0099ff;
+        color: white;
+        font-size: 20px;
+    }
+
+    .t_viewexam .t_examtable table {
+        width: 100%;
+    }
+
+
+    .t_viewexam .t_examtable {
+        background-color: #fff;
+        border-radius: 15px;
+        max-height: 500px;
+        height: 500px;
+        padding-bottom: 10px;
+        width: 80%;
+        overflow: auto;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+        .t_viewexam .t_examtable .t_edit {
+            background-color: #0099ff;
+            border: transparent;
+            border-radius: 15px;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 25px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        }
+
+            .t_viewexam .t_examtable .t_edit:hover {
+                background-color: #fff;
+                color: #0099ff;
+                font-weight: bold;
+                font-size: 15px;
+                box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+                text-decoration: none;
+                transition-delay: 0.25s;
+            }
+
+        .t_viewexam .t_examtable .t_delete {
+            background-color: red;
+            border: transparent;
+            border-radius: 15px;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 25px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        }
+
+            .t_viewexam .t_examtable .t_delete:hover {
+                background-color: #fff;
+                color: red;
+                font-weight: bold;
+                font-size: 15px;
+                box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+                text-decoration: none;
+                transition-delay: 0.25s;
+            }
+
+    .t_viewexam .t_create {
+        background-color: green;
+        border: transparent;
+        border-radius: 15px;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 25px;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+    }
+
+        .t_viewexam .t_create:hover {
+            background-color: #fff;
+            color: green;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+            text-decoration: none;
+            transition-delay: 0.25s;
+        }
+
+
+/*TEACHER QUESTIONS PAGE*/
+
+/*Page color*/
+.t_question {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+/*Components*/
+
+.t_question {
+    padding-top: 100px;
+}
+
+    .t_question h2 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+    .t_question .t_questiontable table, th, td {
+        margin-top: 10px;
+        font-size: 15px;
+        border: 1px solid rgb(192, 192, 192);
+        font-family: Arial, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    .t_question .t_questiontable th, td {
+        padding: 10px;
+    }
+
+    .t_question .t_questiontable th {
+        background-color: #0099ff;
+        color: white;
+        font-size: 20px;
+    }
+
+    .t_question .t_questiontable table {
+        width: 100%;
+    }
+
+
+    .t_question .t_questiontable {
+        background-color: #fff;
+        border-radius: 15px;
+        max-height: 500px;
+        height: 500px;
+        width: 100%;
+        overflow: auto;
+        padding-bottom: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+        .t_question .t_questiontable .t_edit {
+            background-color: #0099ff;
+            border: transparent;
+            border-radius: 15px;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 25px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        }
+
+            .t_question .t_questiontable .t_edit:hover {
+                background-color: #fff;
+                color: #0099ff;
+                font-weight: bold;
+                font-size: 15px;
+                box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+                text-decoration: none;
+                transition-delay: 0.25s;
+            }
+
+        .t_question .t_questiontable .t_delete {
+            background-color: red;
+            border: transparent;
+            border-radius: 15px;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 25px;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        }
+
+            .t_question .t_questiontable .t_delete:hover {
+                background-color: #fff;
+                color: red;
+                font-weight: bold;
+                font-size: 15px;
+                box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+                text-decoration: none;
+                transition-delay: 0.25s;
+            }
+
+    .t_question .t_create {
+        background-color: green;
+        border: transparent;
+        border-radius: 15px;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: bold;
+        margin-top: 15px;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+    }
+
+        .t_question .t_create:hover {
+            background-color: #fff;
+            color: green;
+            font-weight: bold;
+            font-size: 15px;
+            box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+            text-decoration: none;
+            transition-delay: 0.25s;
+        }
+
+
+
+/*TEACHER EDIT EXAM PAGE*/
+
+
+
+/*Page color*/
+.t_editexam {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 150px;
+}
+
+
+    /*Components*/
+    .t_editexam .t_editexamform {
+        background-color: #fff;
+        border-radius: 15px;
+        max-height: 450px;
+        height: 450px;
+        width: 40%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-content: center;
+    }
+
+    .t_editexam h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+.t_editexamform .editexam {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+
+.t_editexamform .t_submit {
+    background-color: green;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_editexamform .t_submit:hover {
+        background-color: #fff;
+        color: green;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_editexamform .backtolist {
+    background-color: #0099ff;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_editexamform .backtolist:hover {
+        background-color: #fff;
+        color: #0099ff;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+
+
+
+
+
+/*TEACHER EDIT QUESTIONS PAGE*/
+
+/*Page color*/
+.t_editquestion {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 130px;
+}
+
+
+    /*Components*/
+    .t_editquestion .t_editqueform {
+        background-color: #fff;
+        border-radius: 15px;
+        height: auto;
+        width: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-content: center;
+    }
+
+    .t_editquestion h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+.t_editqueform .editque {
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+
+.t_editqueform .t_submit {
+    background-color: green;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_editqueform .t_submit:hover {
+        background-color: #fff;
+        color: green;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_editqueform .backtolist {
+    background-color: #0099ff;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_editqueform .backtolist:hover {
+        background-color: #fff;
+        color: #0099ff;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+
+
+/*TEACHER CREATE EXAM PAGE*/
+
+
+/*Page color*/
+.t_createexam {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 150px;
+}
+
+
+    /*Components*/
+    .t_createexam .t_createexamform {
+        background-color: #fff;
+        border-radius: 15px;
+        max-height: 450px;
+        height: 450px;
+        width: 40%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-content: center;
+    }
+
+    .t_createexam h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+.t_createexamform .createexam {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+
+.t_createexamform .t_submit {
+    background-color: green;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_createexamform .t_submit:hover {
+        background-color: #fff;
+        color: green;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_createexamform .backtolist {
+    background-color: #0099ff;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_createexamform .backtolist:hover {
+        background-color: #fff;
+        color: #0099ff;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_createexamform .reset {
+    background-color: grey;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_createexamform .reset:hover {
+        background-color: #fff;
+        color: grey;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+
+
+/*TEACHER CREATE QUESTION PAGE*/
+
+
+/*Page color*/
+.t_createquestion {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 130px;
+}
+
+
+    /*Components*/
+    .t_createquestion .t_createqueform {
+        background-color: #fff;
+        border-radius: 15px;
+        height: auto;
+        width: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-content: center;
+    }
+
+    .t_createquestion h1 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+.t_createqueform .createque {
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+
+.t_createqueform .t_submit {
+    background-color: green;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_createqueform .t_submit:hover {
+        background-color: #fff;
+        color: green;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_createqueform .backtolist {
+    background-color: #0099ff;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_createqueform .backtolist:hover {
+        background-color: #fff;
+        color: #0099ff;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_createqueform .reset {
+    background-color: grey;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_createqueform .reset:hover {
+        background-color: #fff;
+        color: grey;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+
+/*TEACHER DELETE EXAM PAGE*/
+
+
+
+/*Page color*/
+.t_deleteexam {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 150px;
+}
+
+
+    /*Components*/
+    .t_deleteexam .t_deleteexamform {
+        background-color: #fff;
+        border-radius: 15px;
+        max-height: 450px;
+        height: 450px;
+        width: 40%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-content: center;
+    }
+
+    .t_deleteexam h1, h2 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+.t_deleteexamform .deleteexam {
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+    .t_deleteexamform .deleteexam p {
+        color: grey;
+    }
+
+.t_deleteexamform .t_delete {
+    background-color: red;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_deleteexamform .t_delete:hover {
+        background-color: #fff;
+        color: red;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_deleteexamform .backtolist {
+    background-color: #0099ff;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_deleteexamform .backtolist:hover {
+        background-color: #fff;
+        color: #0099ff;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+
+/*TEACHER DELETE QUESTION PAGE*/
+
+
+/*Page color*/
+.t_deletequestion {
+    background-image: url('images/backcommon.jpeg');
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+}
+
+
+    /*Components*/
+    .t_deletequestion .t_deletequestionform {
+        background-color: #fff;
+        border-radius: 15px;
+        height: auto;
+        width: 70%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        justify-content: center;
+    }
+
+    .t_deletequestion h1, h2 {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+    }
+
+.t_deletequestionform .deletequestion {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+    .t_deletequestionform .deletequestion p {
+        color: grey;
+    }
+
+.t_deletequestionform .t_delete {
+    background-color: red;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_deletequestionform .t_delete:hover {
+        background-color: #fff;
+        color: red;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }
+
+.t_deletequestionform .backtolist {
+    background-color: #0099ff;
+    border: transparent;
+    border-radius: 15px;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 15px;
+    box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+}
+
+    .t_deletequestionform .backtolist:hover {
+        background-color: #fff;
+        color: #0099ff;
+        font-weight: bold;
+        font-size: 15px;
+        box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
+        text-decoration: none;
+        transition-delay: 0.25s;
+    }

@@ -3,19 +3,27 @@
     ViewBag.Title = "LandingPage";
 }
 
-<h2>LandingPage</h2>
+<h1 class="landingpageteachername">Welcome, <b>@User.Identity.Name</b></h1>
 
-<div class="container">
-    <div class="col-md-3">
-        <h1>Exam Column</h1>
-        <button class="btn-success">@Html.ActionLink("Go to Exams", "ViewExam", "Teacher")</button>
+
+<div class="t_landing container-fluid">
+    <!--LANDING-->
+    <div class="container-fluid buttons text-center">
+        <div class="row">
+            <div class="col-sm-4">
+                <h1>Exams</h1>
+                <a href="@Url.Action("ViewExam","Teacher")" id="examcol">Go to Exams</a>
+            </div>
+            <div class="col-sm-4">
+                <h1>Questions</h1>
+                <a href="@Url.Action("ViewQuestion","Teacher")" id="examcol">Go to Questions</a>
+            </div>
+            <div class="col-sm-4">
+                <h1>Leaderboard</h1>
+                <a href="@Url.Action("LeaderBoard","Teacher")" id="examcol">Go to Leaderboard</a>
+            </div>
+        </div>
+
     </div>
-    <div class="col-md-3">
-        <h1>Question Column</h1>
-        <button class="btn-success">@Html.ActionLink("Go to Questions", "ViewQuestion", "Teacher")</button>
-    </div>
-    <div class="col-md-3">
-        <h1>Leaderboard Column</h1>
-        <button class="btn-success">@Html.ActionLink("Go to Leaderboards", "LeaderBoard", "Teacher")</button>
-    </div>
+
 </div>

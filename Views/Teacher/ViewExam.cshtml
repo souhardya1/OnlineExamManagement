@@ -3,66 +3,60 @@
 @{
     ViewBag.Title = "ViewExam";
 }
+<div class="t_viewexam container-fluid">
 
-<h2>ViewExam</h2>
-
-<p>
-    @Html.ActionLink("Create New", "CreateExam","Teacher")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Course.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @{
-                if (item.CourseRefId == 1)
-                {
-                    <p>CSE</p>
-
-                }
-                else if (item.CourseRefId == 2)
-                {
-                    <p>ECE</p>
-
-                }
-                else
-                {
-                    <p>IT</p>
-                }
-            }
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditExam", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteExam", new { id = item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    <!--VIEWEXAM-->
     
-@Html.ActionLink("Back to Landing Page","LandingPage","Teacher")
+    <h1>EXAMS</h1>
+    <div class="container-fluid t_examtable">
+        <div class="mt-5">@Html.ActionLink("Create an Exam", "CreateExam", "Teacher", new { @class = "t_create" })</div>
+        <table>
+            <tr>
+                <th width="25%">@Html.DisplayNameFor(model => model.Course.Name)</th>
+                <th width="15%">@Html.DisplayNameFor(model => model.Code)</th>
+                <th width="10%">@Html.DisplayNameFor(model => model.Date)</th>
+                <th width="10%">@Html.DisplayNameFor(model => model.Active)</th>
+                <th width="40%"></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @{
+                            if (item.CourseRefId == 1)
+                            {
+                                <p>ASP .Net MVC</p>
+
+                            }
+                            else if (item.CourseRefId == 2)
+                            {
+                                <p>Angular</p>
+
+                            }
+                            else
+                            {
+                                <p>SQL</p>
+                            }
+                        }
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditExam", new { id = item.Id }, new { @class = "t_edit" }) 
+                        @Html.ActionLink("Delete", "DeleteExam", new { id = item.Id }, new { @class = "t_delete" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@Html.ActionLink("Back to Landing Page", "LandingPage", "Teacher")

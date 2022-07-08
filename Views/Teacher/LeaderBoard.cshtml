@@ -5,61 +5,66 @@
 }
 
 <h2>LeaderBoard</h2>
+<div class="t_leaderboard">
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.Marks1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Marks2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Marks3)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Marks4)
-        </th>
-        <th>
-            Total
-        </th>
-        <th></th>
-    </tr>
+    <!--LEADERBOARD-->
+    <h1>LEADERBOARD</h1>
+    <div class="container-fluid leadtable">
+        <table class="table">
+            <tr>
+                <th width="25%">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th width="25%">
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
+                <th width="10%">
+                    @Html.DisplayNameFor(model => model.Marks1)
+                </th>
+                <th width="10%">
+                    @Html.DisplayNameFor(model => model.Marks2)
+                </th>
+                <th width="10%">
+                    @Html.DisplayNameFor(model => model.Marks3)
+                </th>
+                <th width="10%">
+                    @Html.DisplayNameFor(model => model.Marks4)
+                </th>
+                <th width="10%">
+                    Total
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marks1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marks2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marks3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marks4)
+                    </td>
+                    <td>
+                        @(Convert.ToInt32(item.Marks1) + Convert.ToInt32(item.Marks2) + Convert.ToInt32(item.Marks3) + Convert.ToInt32(item.Marks4))
+                    </td>
+                </tr>
+             }
+        </table>
+    </div>
+</div>
+
         
-        <td>
-            @Html.DisplayFor(modelItem => item.Marks1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marks2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marks3)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marks4)
-        </td>
-        <td>
-            @(Convert.ToInt32(item.Marks1) + Convert.ToInt32(item.Marks2) + Convert.ToInt32(item.Marks3) + Convert.ToInt32(item.Marks4))
-        </td>
-
-    </tr>
-}
-
-</table>

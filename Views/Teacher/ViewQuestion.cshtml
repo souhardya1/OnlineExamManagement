@@ -6,81 +6,87 @@
 
 <h2>ViewQuestion</h2>
 
-<p>
-    @Html.ActionLink("Create New", "CreateQuestion", "Teacher")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Course.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ques)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OptionA)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OptionB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OptionC)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OptionD)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Correct)
-        </th>
-        <th></th>
-    </tr>
+<div class="t_question container-fluid">
 
-    @foreach (var item in Model)
-    {
-        <tr>
+    <!--QUESTIONS-->
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Ques)
-            </td>
-            <td>
-                @{
-                    if (item.CourseRefId == 1)
-                    {
-                        <p>CSE</p>
+    <h3>Welcome,  @User.Identity.Name</h3>
+    <div class="container-fluid"><a class="t_create" href="@Url.Action("CreateQuestion","Teacher")">CREATE</a></div>
+    <h1>QUESTIONS</h1>
+    <div class="container-fluid t_questiontable">
+        <table>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Course.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ques)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OptionA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OptionB)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OptionC)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OptionD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Correct)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
 
-                    }
-                    else if (item.CourseRefId == 2)
-                    {
-                        <p>ECE</p>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ques)
+                    </td>
+                    <td>
+                        @{
+                            if (item.CourseRefId == 1)
+                            {
+                                <p>ASP .Net MVC</p>
 
-                    }
-                    else
-                    {
-                        <p>IT</p>
-                    }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Correct)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditQuestion", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "DeleteQuestion", new { id = item.Id })
-            </td>
-        </tr>
-    }
-</table>
+                            }
+                            else if (item.CourseRefId == 2)
+                            {
+                                <p>Angular</p>
+
+                            }
+                            else
+                            {
+                                <p>Sql</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OptionA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OptionB)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OptionC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OptionD)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correct)
+                    </td>
+                    <td>
+                        <a class="t_edit" href="@Url.Action("EditQuestion", "Teacher", new {id = item.Id})">Edit</a> <a class="t_delete" href="@Url.Action("DeleteQuestion", "Teacher", new {id = item.Id})">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
 
 @Html.ActionLink("Back to Home", "LandingPage", "Teacher")

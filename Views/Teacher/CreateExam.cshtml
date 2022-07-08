@@ -4,73 +4,77 @@
     ViewBag.Title = "CreateExam";
 }
 
-<h2>CreateExam</h2>
-@Html.Raw(ViewBag.ExamCreateAlert)
-@if (!string.IsNullOrEmpty(ViewBag.ExamCreateAlert2))
-{
-    <script type="text/javascript">
-        alert("@ViewBag.ExamCreateAlert2");
-    </script>
-}
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="t_createexam container-fluid">
+    <h1>Create Exam</h1>
+    <div class="t_createexamform container">
+        @using (Html.BeginForm(new { @class = "createexam" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group container">
 
-    <div class="form-horizontal">
-        <h4>Exam</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-4">
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control", @id = "inputcode", @placeholder = "Exam Code" } })
+                        @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.CourseRefId, "CourseRefId", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-4">
+                        @Html.DropDownList("CourseRefId", new List<SelectListItem>
+                                                              {
+                                                                   new SelectListItem{ Text="ASP .Net MVC", Value = "1" },
+                                                                   new SelectListItem{ Text="Angular", Value = "2" },
+                                                                   new SelectListItem{ Text="SQL", Value = "3" },
+
+                                                              }, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-4">
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", id = "inputdate", @placeholder = "Exam Date" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-4">
+                        @Html.DropDownList("Active", new List<SelectListItem>
+                                                              {
+                                                                   new SelectListItem{ Text="Yes", Value = "1" },
+                                                                   new SelectListItem{ Text="No", Value = "0" },
+
+                                                              }, new { @class = "form-control form-group" })
+                        @Html.ValidationMessageFor(model => model.Active, "Active is required", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                    <button type="submit" class="t_submit btn ">Create</button>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="reset" class=" reset btn ">Reset</button>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="button" class="backtolist btn ">@Html.ActionLink("Back To Exams","ViewExam", "Teacher")</button>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseRefId, "CourseRefId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CourseRefId", new List<SelectListItem>
-                                                      {
-                                                           new SelectListItem{ Text="Computer Science and Engineering", Value = "1" },
-                                                           new SelectListItem{ Text="Electronics and Communication Engineering", Value = "2" },
-                                                           new SelectListItem{ Text="Information Technology", Value = "3" },
-
-                                                      })
-                @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Active", new List<SelectListItem>
-                                                      {
-                                                           new SelectListItem{ Text="Yes", Value = "1" },
-                                                           new SelectListItem{ Text="No", Value = "0" },
-
-                                                      })
-                @Html.ValidationMessageFor(model => model.Active, "Active is required", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+         }
     </div>
-}
-@Html.Raw(ViewData["CreateSuccess"])
-<div>
-    @Html.ActionLink("Back to List", "ViewExam")
 </div>
+
+
+
+
+    
+  

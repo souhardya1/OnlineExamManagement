@@ -95,9 +95,9 @@ namespace OnlineExamManagement.Controllers
 
 
                     Session["userId"] = stud.Id;
-                    System.Diagnostics.Debug.WriteLine(s.Id);
+                    //System.Diagnostics.Debug.WriteLine(s.Id);
                     //System.Diagnostics.Debug.WriteLine(s.Email);
-                    if (s.Marks4 == null)
+                    if (stud.Marks4 == null)
                     {
                         Session["IsEligible"] = "1";  // yes eligible
                     }
@@ -106,6 +106,9 @@ namespace OnlineExamManagement.Controllers
                         Session["IsEligible"] = "0";  // no max number of exams completed
 
                     }
+                    //System.Diagnostics.Debug.WriteLine(".smarks4 is ",stud.Marks4);
+                    //System.Diagnostics.Debug.WriteLine("iseligible is: ",Session["IsEligible"].ToString());
+     
                     return RedirectToAction("AvailableExams");
                 }
                 else
@@ -275,11 +278,14 @@ namespace OnlineExamManagement.Controllers
                 Marks.c = Marks.c + 1;
                 if (Marks.c <= 10)
                 {
-                    if (question.Correct.ToLower() == choice.ToLower())
+                    if (choice != null)
                     {
-                        Marks.Obtained = Marks.Obtained + 10;
+                        if (question.Correct.ToLower() == choice.ToLower())
+                        {
+                            Marks.Obtained = Marks.Obtained + 10;
+                        }
+                        //System.Diagnostics.Debug.WriteLine(Marks.Obtained);
                     }
-                    //System.Diagnostics.Debug.WriteLine(Marks.Obtained);
                 }
                 return RedirectToAction("MainExam");
             }
@@ -305,12 +311,19 @@ namespace OnlineExamManagement.Controllers
                 else
                 {
                     ViewBag.marksObtained = Marks.Obtained;
+                    if (Marks.Obtained > 40)
+                    {
+                        ViewData["PassFail"] = "1";
+                    }
+                    else
+                    {
+                        ViewData["PassFail"] = "0";
+                    }
                     int id = int.Parse(Session["userId"].ToString());
-
-
                     HttpClient client = new HttpClient();
                     var url = "https://localhost:44301/api/Studentapi/" + id.ToString();
                     client.BaseAddress = new Uri(url);
+                    System.Diagnostics.Debug.WriteLine("result id is", id.ToString());
                     var response = client.PutAsJsonAsync<int>(url, id);
                     response.Wait();
 

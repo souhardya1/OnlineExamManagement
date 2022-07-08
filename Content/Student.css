@@ -1,0 +1,154 @@
+﻿/*Available exam*/
+
+body {
+    height: 450px;
+    display: grid;
+    align-content: center;
+}
+
+table {
+    width: 600px;
+    box-shadow: -1px 12px 12px -6px rgba(0,0,0,0.5);
+}
+
+.t {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table, td, th {
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td {
+    font-size: 18px;
+}
+
+th {
+    background-color: blue;
+    color: white;
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+/* CSS */
+.s_button {
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+    .s_button:focus:not(:focus-visible):not(.focus-visible) {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .s_button:hover {
+        background-color: white;
+        color: #2ea44f;
+    }
+
+    .s_button:focus {
+        box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+        outline: none;
+    }
+
+    .s_button:disabled {
+        background-color: #94d3a2;
+        border-color: rgba(27, 31, 35, .1);
+        color: rgba(255, 255, 255, .8);
+        cursor: default;
+    }
+
+    .s_button:active {
+        background-color: #298e46;
+        box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+    }
+
+.s_availableexam_name {
+    margin-left: 10px;
+    margin-top: 10%;
+}
+
+
+
+/*Profile*/
+table tr th {
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table tr td {
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid lightgray;
+}
+
+.s_center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+h3 {
+    margin-left: 70px;
+    margin-top: 10px;
+}
+
+h4 {
+    margin-left: 70px;
+}
+
+
+th {
+    background-color: blue;
+    color: white;
+}
+/*Result*/
+
+.s_result {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 40px;
+}
+
+.s_maincontent {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 30px;
+}
+
+p {
+    text-align: center;
+}

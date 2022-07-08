@@ -4,67 +4,69 @@
     ViewBag.Title = "DeleteExam";
 }
 
-<h2>DeleteExam</h2>
+<div class="t_deleteexam container-fluid">
+    <h1>Delete Exam</h1>
+    <h2>Are you sure you want to delete this?</h2>
+    <div class="t_deleteexamform container">
+        @using (Html.BeginForm())
+         {
+            @Html.AntiForgeryToken()
+            <div class="form-group container">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Exam</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Code)
-        </dt>
+                <div class="form-group row">
+                    <label for="code" class="col-sm-2 col-form-label">Code</label>
+                    <div class="form-group col-md-4">
+                        <p><b> @Html.DisplayFor(model => model.Code)</b></p>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
+                <div class="form-group row">
+                    <label for="course" class="col-sm-2 col-form-label">Course Type</label>
+                    <div class="form-group col-md-4">
+                        <p>
+                            <b>
+                                @{
+                                    if (Model.CourseRefId == 1)
+                                    {
+                                        <p>ASP .Net MVC</p>
+                                    }
+                                    else if (Model.CourseRefId == 2)
+                                    {
+                                        <p>Angular</p>
+                                    }
+                                    else
+                                    {
+                                        <p>SQL</p>
+                                    }
+                                }
+                            </b>
+                        </p>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseRefId)
-        </dt>
+                <div class="form-group row">
+                    <label for="date" class="col-sm-2 col-form-label">Date</label>
+                    <div class="form-group col-md-4">
+                        <p><b>@Html.DisplayFor(model => model.Date)</b></p>
+                    </div>
+                </div>
 
-        <dd>
-            @{ if (Model.CourseRefId == 1)
-                {
-                    <p>CSE</p>
-                }
-                else if (Model.CourseRefId == 2)
-                {
-                    <p>ECE</p>
-                }
-                else
-                {
-                    <p>IT</p>
-                }
-            }
-        </dd>
+                <div class="form-group row">
+                    <label for="code" class="col-sm-2 col-form-label">Active</label>
+                    <div class="form-group col-md-4">
+                        <p><b>@Html.DisplayFor(model => model.Active)</b></p>
+                    </div>
+                </div>
 
+                <div class="form-group col-md-4">
+                    <button type="submit" class="t_delete btn">Delete</button>
+                </div>
 
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "ViewExam")
-        </div>
-    }
+                <div class="form-group col-md-4">
+                    <button type="button" class="backtolist btn">@Html.ActionLink("Back To Exams", "ViewExam", "Teacher", new {@class = "t_edit"})</button>
+                </div>
+            </div>
+         }
+    </div>
 </div>
+

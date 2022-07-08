@@ -1,97 +1,118 @@
 ﻿@model OnlineExamManagement.Models.Question
 
 @{
-    ViewBag.Title = "EditQuestion";
+    ViewBag.Title = "CreateQuestion";
 }
 
-<h2>EditQuestion</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Question</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<div class="t_createquestion container-fluid">
+    <h1>Edit Question</h1>
+    <div class="t_createqueform container">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group container">
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Ques, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.EditorFor(model => model.Ques, new { htmlAttributes = new { @class = "form-control", @id = "inputque", @placeholder = "Question" } })
+                        @Html.ValidationMessageFor(model => model.Ques, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ques, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ques, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ques, "", new { @class = "text-danger" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.CourseRefId, "CourseRefId", htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.DropDownList("CourseRefId", new List<SelectListItem>
+                                                               {
+                                                                    new SelectListItem{ Text="ASP .Net MVC", Value = "1" },
+                                                                    new SelectListItem{ Text="Angular", Value = "2" },
+                                                                    new SelectListItem{ Text="SQL", Value = "3" },
+
+                                                               })
+                        @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OptionA, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.EditorFor(model => model.OptionA, new { htmlAttributes = new { @class = "form-control", @id = "optionA", @placeholder = "OptionA" } })
+                        @Html.ValidationMessageFor(model => model.OptionA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OptionB, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.EditorFor(model => model.OptionB, new { htmlAttributes = new { @class = "form-control", @id = "optionB", @placeholder = "OptionB" } })
+                        @Html.ValidationMessageFor(model => model.OptionB, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OptionC, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.EditorFor(model => model.OptionC, new { htmlAttributes = new { @class = "form-control", @id = "optionC", @placeholder = "OptionC" } })
+                        @Html.ValidationMessageFor(model => model.OptionC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.OptionD, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.EditorFor(model => model.OptionD, new { htmlAttributes = new { @class = "form-control", @id = "optionD", @placeholder = "OptionD" } })
+                        @Html.ValidationMessageFor(model => model.OptionD, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Correct, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
+                    <div class="form-group col-md-5">
+                        @Html.DropDownList("Correct", new List<SelectListItem>
+                                                                {
+                                                                     new SelectListItem{ Text="Option A", Value = "optionA" },
+                                                                     new SelectListItem{ Text="Option B", Value = "optionB" },
+                                                                     new SelectListItem{ Text="Option C", Value = "optionC" },
+                                                                     new SelectListItem{ Text="Option D", Value = "optionD" },
+                                                                }, new { @class = "form-control form-group" })
+                        @Html.ValidationMessageFor(model => model.Correct, "Correct Action is Required", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                    <button type="submit" class="t_submit btn ">Edit</button>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="reset" class=" reset btn ">Reset</button>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="button" class="backtolist btn ">@Html.ActionLink("Back to List", "ViewQuestion")</button>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseRefId, "CourseRefId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CourseRefId", new List<SelectListItem>
-                                                        {
-                                                             new SelectListItem{ Text="Computer Science and Engineering", Value = "1" },
-                                                             new SelectListItem{ Text="Electronics and Communication Engineering", Value = "2" },
-                                                             new SelectListItem{ Text="Information Technology", Value = "3" },
-
-                                                        })
-                @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OptionA, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OptionA, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OptionA, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OptionB, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OptionB, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OptionB, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OptionC, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OptionC, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OptionC, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.OptionD, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OptionD, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OptionD, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Correct, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Correct", new List<SelectListItem>
-                                                       {
-                                                            new SelectListItem{ Text="Option A", Value = "optionA" },
-                                                            new SelectListItem{ Text="Option B", Value = "optionB" },
-                                                            new SelectListItem{ Text="Option C", Value = "optionC" },
-                                                            new SelectListItem{ Text="Option D", Value = "optionD" },
-                                                       })
-                @Html.ValidationMessageFor(model => model.Correct, "Correct Action is Required", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "ViewQuestion")
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,7 @@
 
 @{ if (User.Identity.IsAuthenticated)
     {
-        <h1>Welcome @User.Identity.Name</h1>
+        <h1 class = "s_availableexam_name">Welcome,  @User.Identity.Name</h1>
     }
 
 }
@@ -17,7 +17,7 @@
         <div class="container my-5">
             <h2>AvailableExams</h2>
 
-            <table class="table">
+            <table class="t">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Code)
@@ -66,18 +66,18 @@
                             @{
                                 if (System.DateTime.Now > item.Date)
                                 {
-                                    <button type="button" disabled>Not Available</button>
+                                     <button class="s_button" role="button">Not Available</button>
 
                                 }
                                 else
                                 {
                                     if (item.Active == 1)
                                     {
-                                        <button class="active">@Html.ActionLink("Available", "MainExam", "Student", new { id = item.CourseRefId }, null)</button>
+                                        <button class="s_button" >@Html.ActionLink("Available", "MainExam", "Student", new { id = item.CourseRefId }, null)</button>
                                     }
                                     else
                                     {
-                                        <button type="button" disabled>Not Available</button>
+                                        <button class="s_button" role="button">Not Available</button>
                                     }
                                 }
 

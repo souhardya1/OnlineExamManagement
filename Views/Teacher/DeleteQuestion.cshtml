@@ -4,88 +4,111 @@
     ViewBag.Title = "DeleteQuestion";
 }
 
-<h2>DeleteQuestion</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Question</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ques)
-        </dt>
+<div class="t_deletequestion container-fluid">
+    <h1>Delete Question</h1>
+    <h2>Are you sure you want to delete this?</h2>
+    <div class="t_deletequestionform container">
+        @using (Html.BeginForm(new { @class = "deletequestion" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group container">
+                <div class="form-group row">
+                    <label for="question" class="col-sm-2 col-form-label">Question</label>
+                    <div class="form-group col-md-4">
+                        <p><b>@Html.DisplayFor(model => model.Ques)</b></p>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ques)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseRefId)
-        </dt>
+                <div class="form-group row">
+                    <label for="course" class="col-sm-2 col-form-label">Course Type</label>
+                    <div class="form-group col-md-4">
+                        <p>
+                            <b>
+                                @{
+                                    if (Model.CourseRefId == 1)
+                                    {
+                                        <p>ASP .Net MVC</p>
+                                    }
+                                    else if (Model.CourseRefId == 2)
+                                    {
+                                        <p>Angular</p>
+                                    }
+                                    else
+                                    {
+                                        <p>SQL</p>
+                                    }
+                                }
+                            </b>
+                        </p>
+                    </div>
+                </div>
 
-        <dd>
-            @{ if (Model.CourseRefId == 1)
-                {
-                    <p>CSE</p>
-                }
-                else if (Model.CourseRefId == 2)
-                {
-                    <p>ECE</p>
-                }
-                else
-                {
-                    <p>IT</p>
-                }
-            }
-        </dd>
+                <div class="form-group row">
+                    <label for="optionA" class="col-sm-2 col-form-label">OptionA</label>
+                    <div class="form-group col-md-4">
+                        <p><b> @Html.DisplayFor(model => model.OptionA)</b></p>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OptionA)
-        </dt>
+                <div class="form-group row">
+                    <label for="optionA" class="col-sm-2 col-form-label">OptionB</label>
+                    <div class="form-group col-md-4">
+                        <p><b> @Html.DisplayFor(model => model.OptionB)</b></p>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.OptionA)
-        </dd>
+                <div class="form-group row">
+                    <label for="optionA" class="col-sm-2 col-form-label">OptionC</label>
+                    <div class="form-group col-md-4">
+                        <p><b> @Html.DisplayFor(model => model.OptionC)</b></p>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OptionB)
-        </dt>
+                <div class="form-group row">
+                    <label for="optionA" class="col-sm-2 col-form-label">OptionD</label>
+                    <div class="form-group col-md-4">
+                        <p><b>@Html.DisplayFor(model => model.OptionD)</b></p>
+                    </div>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.OptionB)
-        </dd>
+                <div class="form-group row">
+                    <label for="correct" class="col-sm-2 col-form-label">Correct</label>
+                    <div class="form-group col-md-4">
+                        <p><b>@Html.DisplayFor(model => model.Correct)</b></p>
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.OptionC)
-        </dt>
+                <div class="form-group col-md-6">
+                    <button type="submit" class="t_delete btn">Delete</button>
+                </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.OptionC)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OptionD)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.OptionD)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Correct)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Correct)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "ViewQuestion")
-        </div>
-    }
+                <div class="form-group col-md-6">
+                    <button type="button" class="backtolist btn">Back to List</button>
+                </div>
+            </div>
+         }
+    </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
