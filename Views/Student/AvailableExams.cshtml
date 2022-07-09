@@ -50,17 +50,17 @@
                                 @{
                                     if (item.CourseRefId == 1)
                                     {
-                                        <p>CSE</p>
+                                        <p>ASP .Net MVC</p>
 
                                     }
                                     else if (item.CourseRefId == 2)
                                     {
-                                        <p>ECE</p>
+                                        <p>Angular</p>
 
                                     }
                                     else
                                     {
-                                        <p>IT</p>
+                                        <p>SQL</p>
                                     }
                                 }
                             </td>
@@ -68,7 +68,7 @@
                                 @{
                                     if (System.DateTime.Now > item.Date)
                                     {
-                                        <button class="s_button" role="button">Not Available</button>
+                                        <button class="inv-btn" role="button">Not Available</button>
 
                                     }
                                     else
@@ -79,7 +79,7 @@
                                         }
                                         else
                                         {
-                                            <button class="s_button" role="button">Not Available</button>
+                                            <button class="inv-btn" role="button">Not Available</button>
                                         }
                                     }
 

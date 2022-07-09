@@ -1,7 +1,7 @@
 /*Available exam*/
 
 .s_availableexam {
-    background-image: url(images/backcommon.jpg);
+    background-image: url('images/backcommon.jpeg');
     position: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -51,6 +51,32 @@ a:link {
 }
 
 /* CSS */
+.inv-btn {
+    appearance: none;
+    background-color: white;
+    border: 1px solid rgba(27, 31, 35, .15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    box-sizing: border-box;
+    color: red;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+
 .s_button {
     appearance: none;
     background-color: #2ea44f;
@@ -114,7 +140,7 @@ a:link {
 
 
 .s_profile {
-    background-image: url(images/backcommon.jpg);
+    background-image: url('images/backcommon.jpeg');
     position: fixed;
     background-repeat: no-repeat;
     background-size: cover;
