@@ -4,97 +4,99 @@
     ViewBag.Title = "AvailableExams";
 }
 
-@{ if (User.Identity.IsAuthenticated)
-    {
-        <h1 class = "s_availableexam_name">Welcome,  @User.Identity.Name</h1>
+<div class="container_fluid s_availableexam">
+
+    @{ if (User.Identity.IsAuthenticated)
+        {
+            <h1 class="s_availableexam_name">Welcome,  @User.Identity.Name</h1>
+        }
+
     }
 
-}
+    @{ if (Session["IsEligible"].ToString() == "1")
+        {
 
-@{ if (Session["IsEligible"].ToString() == "1")
-    {
+            <div class="container my-5">
+                <h2>AvailableExams</h2>
 
-        <div class="container my-5">
-            <h2>AvailableExams</h2>
-
-            <table class="t">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Code)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Date)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Course)
-                    </th>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.Active)
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
+                <table class="t">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @{
-                                if (item.CourseRefId == 1)
-                                {
-                                    <p>CSE</p>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Course)
+                        </th>
 
-                                }
-                                else if (item.CourseRefId == 2)
-                                {
-                                    <p>ECE</p>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Active)
+                        </th>
+                        <th></th>
+                    </tr>
 
-                                }
-                                else
-                                {
-                                    <p>IT</p>
-                                }
-                            }
-                        </td>
-                        <td>
-                            @{
-                                if (System.DateTime.Now > item.Date)
-                                {
-                                     <button class="s_button" role="button">Not Available</button>
-
-                                }
-                                else
-                                {
-                                    if (item.Active == 1)
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @{
+                                    if (item.CourseRefId == 1)
                                     {
-                                        <button class="s_button" >@Html.ActionLink("Available", "MainExam", "Student", new { id = item.CourseRefId }, null)</button>
+                                        <p>ASP .Net MVC</p>
+
+                                    }
+                                    else if (item.CourseRefId == 2)
+                                    {
+                                        <p>Angular</p>
+
                                     }
                                     else
                                     {
-                                        <button class="s_button" role="button">Not Available</button>
+                                        <p>SQL</p>
                                     }
                                 }
+                            </td>
+                            <td>
+                                @{
+                                    if (System.DateTime.Now > item.Date)
+                                    {
+                                        <button class="inv-btn" role="button">Not Available</button>
 
-                            }
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-   }
-   else
-   {
-        <div class="container">
-            <h2>You have completed maximum number of exams. Please contact your teacher for further instructions.</h2>
-        </div>
+                                    }
+                                    else
+                                    {
+                                        if (item.Active == 1)
+                                        {
+                                            <button class="s_button">@Html.ActionLink("Available", "MainExam", "Student", new { id = item.CourseRefId }, new {@class="avail-btn",@style="text-decoration:none;"})</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="inv-btn" role="button">Not Available</button>
+                                        }
+                                    }
 
-   }
-}
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="container">
+                <h2>You have completed maximum number of exams. Please contact your teacher for further instructions.</h2>
+            </div>
 
+        }
+    }
 
+</div>

@@ -4,25 +4,30 @@
 }
 
 
-@{  if(ViewData["PassFail"].ToString()=="1")
-    {
-        <p style="font-size:50px;">Congratulations</p>
+<div class="container-fluid" style="margin-top:10%">
+    @{ if (ViewData["PassFail"].ToString() == "1")
+        {
+            <p style="font-size:50px;">Congratulations</p>
+        }
+        else
+        {
+            <p style="font-size:50px;">Sorry, Your result is unsatisfactory. Please contact your teacher for retest</p>
+        }
     }
-    else
-    {
-        <p style="font-size:50px;">Sorry, Your result is unsatisfactory. Please contact your teacher for retest</p>
-    }
-}
-<header>
-     <h1 class="s_result">THANK YOU!</h1>
-</header>
+    <header>
+        <h1 class="s_result">THANK YOU!</h1>
+    </header>
 
-<div>
-    <h1 class="s_maincontent">Your Score is @ViewBag.marksObtained </h1>
-    <h2 class="s_maincontent">Percentage is @ViewBag.marksObtained % </h2>
+    <div>
+        <h1 class="s_maincontent">Your Score is @ViewBag.marksObtained </h1>
+        <h2 class="s_maincontent">Percentage is @ViewBag.marksObtained % </h2>
+    </div>
+
+    <button class="btn-success">@Html.ActionLink("Back to Available Exam", "AvailableExam", "Student")</button>
+
+
+
+
 </div>
-
-<button class="btn-success">@Html.ActionLink("Back to Available Exam","AvailableExam","Student")</button>
-
 
 
