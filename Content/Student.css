@@ -1,16 +1,4 @@
-﻿/*Available exam*/
-
-.s_availableexam {
-    background-image: url('images/backcommon.jpeg');
-    position: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
+/*Available exam*/
 
 body {
     height: 450px;
@@ -144,18 +132,6 @@ a{
 }
 
 /*Profile*/
-.s_profile {
-    background-image: url('images/backcommon.jpeg');
-    position: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 table tr th {
     padding: 20px;
     border: 1px solid lightgray;
@@ -191,18 +167,6 @@ th {
     color: white;
 }
 /*Result*/
-
-.s_resultpage {
-    background-image: url('images/backcommon.jpeg');
-    position: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 
 .s_result {
 
