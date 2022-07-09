@@ -5,7 +5,6 @@
 
 <div class="container_fluid s_resultpage">
 
-<div class="container-fluid" style="margin-top:10%">
     @{ if (ViewData["PassFail"].ToString() == "1")
         {
             <p style="font-size:50px;">Congratulations</p>
@@ -24,8 +23,6 @@
         <h2 class="s_maincontent">Percentage is @ViewBag.marksObtained % </h2>
     </div>
 
-<button class="btn-success">@Html.ActionLink("Back to Available Exam","AvailableExam","Student")</button>
+    <button class="btn-success">@Html.ActionLink("Back to Available Exam", "AvailableExam", "Student")</button>
 
-
-
-
+</div>
