@@ -1,0 +1,313 @@
+﻿
+
+
+.i_content {
+    padding: 25px;
+}
+
+/*BUTTONS*/
+
+.index .km {
+    background: #0084ff;
+    border: 1px solid #0084ff;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    margin-top: 25px;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+    .index .km:hover,
+    .index .km:active {
+        background-color: initial;
+        background-position: 0 0;
+        color: #0084ff;
+    }
+
+    .index .km:active {
+        opacity: .5;
+    }
+
+/*KNOW MORE*/
+
+.i_know {
+    background-image: url('images/homemain.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 790px;
+    width: 100%;
+    background-position: center;
+    border: transparent;
+    border-bottom-left-radius: 55px;
+    border-bottom-right-radius: 55px;
+    box-shadow: 0px 0px 7px 0px rgb(106, 106, 106);
+}
+
+.i_knowcontent {
+    padding-top: 250px;
+    ;
+    padding-left: 70px;
+}
+
+    .i_knowcontent h1 {
+        font-size: 65px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: rgb(234, 3, 255);
+    }
+
+    .i_knowcontent h3 {
+        font-size: 25px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+
+/*STUDENT*/
+.i_student {
+    background-image: url('images/studentmain.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 790px;
+    width: 100%;
+    background-position: center;
+    margin-bottom: 25px;
+    border: transparent;
+    border-radius: 15px;
+    box-shadow: 0px 0px 7px 0px rgb(106, 106, 106);
+}
+
+.i_studentcontent {
+    padding-top: 250px;
+    ;
+    padding-left: 30px;
+}
+
+    .i_studentcontent h1 {
+        font-size: 65px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: rgb(234, 3, 255);
+    }
+
+    .i_studentcontent h3 {
+        font-size: 25px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+
+
+/*TEACHER*/
+.i_teacher {
+    background-image: url('images/teachermain1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 790px;
+    width: 100%;
+    background-position: center;
+    margin-bottom: 25px;
+    border: transparent;
+    border-radius: 15px;
+    box-shadow: 0px 0px 7px 0px rgb(106, 106, 106);
+}
+
+.i_teachercontent {
+    padding-top: 250px;
+    padding-left: 60%;
+}
+
+    .i_teachercontent h1 {
+        font-size: 65px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: rgb(234, 3, 255);
+    }
+
+    .i_teachercontent h3 {
+        font-size: 25px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+
+
+/*ABOUT*/
+.i_about {
+    background-image: url('images/aboutmain.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 790px;
+    width: 100%;
+    background-position: center;
+    margin-bottom: 25px;
+    border: transparent;
+    border-radius: 15px;
+    box-shadow: 0px 0px 7px 0px rgb(106, 106, 106);
+}
+
+.i_aboutcontent {
+    padding-top: 250px;
+    ;
+    padding-left: 30px;
+}
+
+    .i_aboutcontent h1 {
+        font-size: 65px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: rgb(234, 3, 255);
+    }
+
+    .i_aboutcontent h3 {
+        font-size: 25px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+
+
+.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s ease-out;
+}
+
+
+
+    .reveal.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+
+
+
+
+/*ERROR*/
+
+.error {
+    background-image: url('images/errormain.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 790px;
+    width: 100%;
+}
+
+.e_content {
+    padding-top: 500px;
+}
+
+    .e_content h1 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 50px;
+    }
+
+.error .km {
+    background: #0084ff;
+    border: 1px solid #0084ff;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    margin-top: 25px;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+    .error .km:hover,
+    .error .km:active {
+        background-color: initial;
+        background-position: 0 0;
+        color: #0084ff;
+    }
+
+    .error .km:active {
+        opacity: .5;
+    }
+
+
+/*CONTACT*/
+
+.contact {
+    background-image: url('images/contactmain.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 790px;
+    width: 100%;
+}
+
+    .contact h1 {
+        font-size: 100px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-left: 20px;
+        margin-top: 100px;
+    }
+
+.c_content {
+    background-color: rgba(255, 255, 255, 0.44);
+    margin-left: 50%;
+    margin-right: 10%;
+    width: 600px;
+    height: 150px;
+    border: transparent;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 40px;
+    float: right;
+    animation-duration: 1s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-right: 30%;
+    }
+
+    to {
+        margin-right: 10%;
+    }
+}
+
+.c_content h2 {
+    font-size: 45px;
+    padding-top: 15px;
+    font-family: cursive;
+}
+
+.c_content p {
+    font-size: 20px;
+    font-family: cursive;
+}
+
+
+a-n{
+    text-decoration:none;
+}

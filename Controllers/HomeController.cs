@@ -28,5 +28,10 @@ namespace OnlineExamManagement.Controllers
             return RedirectToAction("Index");
 
         }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
     }
 }

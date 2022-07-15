@@ -24,7 +24,8 @@ namespace OnlineExamManagement
                       "~/Content/site.css",
                       "~/Content/navbar.css",
                       "~/Content/Teacher.css",
-                      "~/Content/Student.css"));
+                      "~/Content/Student.css",
+                      "~/Content/Home.css"));
         }
     }
 }

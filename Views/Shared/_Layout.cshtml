@@ -30,6 +30,10 @@
                                         <li>@Html.ActionLink("Student Signup", "Signup", "Student", new { area = "" }, null)</li>
                                         <li>@Html.ActionLink("Contact Us", "ContactUs", "Home", new { area = "" }, null)</li>
                                     }
+                                    else if (Request.Url.ToString()[32] == 'M')
+                                    {
+                                        <li></li>
+                                    }
                                     else if (Request.Url.ToString()[24] == 'T')
                                     {
                                         <li>@Html.ActionLink("Home", "LandingPage", "Teacher", new { area = "" }, null)</li>
@@ -37,6 +41,7 @@
                                         <li>@Html.ActionLink("Questions", "ViewQuestion", "Teacher", new { area = "" }, null)</li>
                                         <li>@Html.ActionLink("Log out", "Logout", "Teacher", new { area = "" }, null)</li>
                                     }
+
                                     else
                                     {
                                         <li>@Html.ActionLink("Available Exams", "AvailableExams", "Student", new { area = "" }, null)</li>
@@ -59,7 +64,7 @@
         </div>
         <br />
 
-        <div class="container body-content" style="margin-top:50px">
+        <div class="body-content" style="margin-top:500px">
             @RenderBody()
 
         </div>

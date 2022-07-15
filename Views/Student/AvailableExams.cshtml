@@ -75,7 +75,7 @@
                                     {
                                         if (item.Active == 1)
                                         {
-                                            <button class="s_button">@Html.ActionLink("Available", "MainExam", "Student", new { id = item.CourseRefId }, null)</button>
+                                            <button class="s_button">@Html.ActionLink("Available", "MainExam", "Student", new { id = item.CourseRefId }, new { @class = "a-n" })</button>
                                         }
                                         else
                                         {
@@ -100,3 +100,12 @@
     }
 
 </div>
+
+@section scripts{
+
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null }
+    </script>
+}

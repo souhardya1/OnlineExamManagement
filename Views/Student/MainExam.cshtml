@@ -7,24 +7,7 @@
 <h2>MainExam</h2>
 
 
-<div class="row">
-    <div class="col-md-10">
-        <table style="width:100%">
-            <tr>
-                @{
-                    for (int i = 0; i < 10; i++)
-                    {
-                        <td>
 
-                            <a href=@Url.Action("MainExam", "Student", new { @id = Session["QuestionCourse"], @qid = i })>@(i + 1)</a> &nbsp; &nbsp; &nbsp;
-                             
-                        </td>
-                                }
-                }
-            </tr>
-        </table>
-    </div>
-</div>
 <br />
 <br />
 <br />
@@ -32,7 +15,7 @@
 <div class="container-fluid">
     <h4><b>Q: @Model.Ques</b></h4>
     <br />
-    <div class="row">
+    <div class="container">
         <form action="/Student/MainExam/@Session["QuestionCourse"]/@ViewData["QuestionIndex"]" method="post">
             @Html.RadioButton("choice", "optionA") &nbsp; &nbsp; &nbsp; @Model.OptionA <br /><br /><br />
             @Html.RadioButton("choice", "optionB") &nbsp; &nbsp; &nbsp; @Model.OptionB <br /><br /><br />
@@ -49,54 +32,21 @@
                     <input type="submit" value="Submit and Finish" class="btn btn-danger" />
                 }
             }
-
-
         </form>
-        @{
-
-
-        }
-
-
-
     </div>
     <hr />
 
 </div>
 
 
+@section scripts{
+
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null }
+    </script>
+}
 
 
-
-
-
-@*@{
-    foreach (var i in Model)
-    {
-        <table class="table">
-            <tr>
-                <th>@i.Ques</th>
-            </tr>
-            <tr>
-                <td><input id="Athree" name="@i.Ques" type="radio" value="optionA" /> &nbsp; &nbsp; &nbsp; @i.OptionA</td>
-
-
-            </tr>
-            <tr>
-                <td><input id="Athree" name="@i.Ques" type="radio" value="optionB" /> &nbsp; &nbsp; &nbsp; @i.OptionB</td>
-
-            </tr>
-            <tr>
-                <td><input id="Athree" name="@i.Ques" type="radio" value="optionC" /> &nbsp; &nbsp; &nbsp;  @i.OptionC</td>
-
-            </tr>
-            <tr>
-                <td><input id="Athree" name="@i.Ques" type="radio" value="optionD" /> &nbsp; &nbsp; &nbsp;  @i.OptionD</td>
-
-            </tr>
-        </table>
-        <button type="submit">@Html.ActionLink("Save", "Result", "Student")</button>
-
-    }
-}*@
 

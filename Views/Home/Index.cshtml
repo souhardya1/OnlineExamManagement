@@ -1,8 +1,78 @@
-﻿
-<div style="margin-top:10%"></div>
-<div class="container-fluid my-5">
-    <button class="btn btn-danger">@Html.ActionLink("Sign in as Teacher", "Login", "Teacher")</button>
-    <button class="btn btn-info">@Html.ActionLink("Sign in as Student", "Login", "Student")</button>
+﻿<div class="index" style="margin-top:2580px">
+    <!--Know More-->
+    <section>
+
+        <div id="home" class="i_know container-fluid">
+
+            <div class="i_knowcontent container-fluid">
+                <h1>Online <br>Examination</h1>
+                <h3>Learn it <br>Test it!</h3>
+
+                <a class="km" role="button" href="#student">Know More!</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="i_content">
+            <!--Student-->
+            <section>
+                <div id="student" class="i_student container-fluid reveal">
+
+                    <div class="i_studentcontent container-fluid">
+                        <h1>Student</h1>
+                        <h3>"Success is the sum of small efforts repeated"</h3>
+                        @Html.ActionLink("Student", "Login", "Student",null, new { @class = "km" })
+                    </div>
+                </div>
+            </section>
+
+            <!--Teacher-->
+            <section>
+                <div id="teacher" class="i_teacher container-fluid reveal">
+
+                    <div class="i_teachercontent container-fluid">
+                        <h1>Teacher</h1>
+                        <h3>"Do you know what is the greatest act of optimism is? Teaching"</h3>
+                        @Html.ActionLink("Teacher", "Login", "Teacher",null, new { @class = "km" })
+                    </div>
+                </div>
+            </section>
+
+            <!--About-->
+            <section>
+                <div id="about" class="i_about container-fluid  reveal">
+
+                    <div class="i_aboutcontent container-fluid">
+                        <h1>About Us</h1>
+                        <h3>We help to students to be brighter <br>We make teachers' life easier'</h3>
+                    </div>
+
+
+                </div>
+            </section>
+
+        </div>
+    </section>
 
 </div>
 
+<script>
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            } else {
+                reveals[i].classList.remove("active");
+            }
+        }
+    }
+
+    window.addEventListener("scroll", reveal);
+</script>

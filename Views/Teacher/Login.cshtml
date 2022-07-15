@@ -34,7 +34,7 @@
             <div class="form-group">
                 <button type="submit" id="login" class="t_signin-btn"><span>Log In</span></button>
             </div>
-         }
+        }
     </div>
 </div>
 
@@ -45,6 +45,11 @@
 
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+@section scripts{
+
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null }
+    </script>
 }

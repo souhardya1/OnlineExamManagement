@@ -2,17 +2,23 @@
 @{
     ViewBag.Title = "ErrorNotFound";
 }
+<div class="error container">
 
-<div class="container">
-    <h1>Oops.. Something isn't Going Well</h1>
-    <h2>Finally, Its time to give some rest to your eyes..</h2>
-    <h3>Go get some rest and Try again later.</h3><hr />
-    <br />
-    <br />
-    <p class="text-danger">@ViewBag.ExceptionE</p>
-    <h4>One last thing before you go, report this error to <a href="mailto: souhardyaofficial@gmail.com">Us</a></h4>
+
+    <div class="e_content text-center">
+        <h1>
+            Oops.. road is blocked ahead<br>
+            Finally, its time to give your eyes some rest.
+        </h1>
+        <p class="text-danger">@ViewBag.ExceptionE</p>
+        <h4>One last thing before you go, report this error to <a href="mailto: souhardyaofficial@gmail.com" style="color:red">Us</a></h4>
+        @Html.ActionLink("Back to Home", "ForceLogOut", "Home", null, new {@class="km"})
+    </div>
 
 </div>
+
+
+
 
 
 

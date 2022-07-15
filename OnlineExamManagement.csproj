@@ -215,14 +215,21 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Home.css" />
+    <Content Include="Content\Images\aboutmain.png" />
     <Content Include="Content\Images\backcommon.jpeg" />
+    <Content Include="Content\Images\contactmain.png" />
+    <Content Include="Content\Images\errormain.png" />
+    <Content Include="Content\Images\homemain.png" />
     <Content Include="Content\Images\loginback1.jpeg" />
     <Content Include="Content\Images\loginmain.jpeg" />
+    <Content Include="Content\Images\studentmain.png" />
     <Content Include="Content\Images\studentsignin.jpeg" />
     <Content Include="Content\Images\studentsignin2.png" />
     <Content Include="Content\Images\teacherlanding.jpg" />
     <Content Include="Content\Images\teacherlanding3.jpg" />
     <Content Include="Content\Images\teacherlandingpage2.jpg" />
+    <Content Include="Content\Images\teachermain1.png" />
     <Content Include="Content\navbar.css" />
     <Content Include="Content\Student.css" />
     <Content Include="Content\Teacher.css" />
@@ -289,6 +296,7 @@
     <Content Include="Views\Teacher\LeaderBoard.cshtml" />
     <Content Include="Views\Teacher\EditExam.cshtml" />
     <Content Include="Views\Error\ErrorNotFound.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
