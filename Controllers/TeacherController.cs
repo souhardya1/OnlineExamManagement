@@ -428,8 +428,7 @@ namespace OnlineExamManagement.Controllers
             else
             {
                 return View();
-            }
-                       
+            }                
         }
 
 

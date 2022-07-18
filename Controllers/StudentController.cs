@@ -406,5 +406,7 @@ namespace OnlineExamManagement.Controllers
             ViewBag.ExceptionE = msg;
             return View();
         }
+
+        public 
     }
 }
