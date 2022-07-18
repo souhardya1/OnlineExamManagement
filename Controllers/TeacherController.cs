@@ -127,6 +127,7 @@ namespace OnlineExamManagement.Controllers
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
+                    TempData["Success"] = "Exam Created Successfully";
                     return RedirectToAction("ViewExam");
                 }
                 else
@@ -186,6 +187,7 @@ namespace OnlineExamManagement.Controllers
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
+                    TempData["Success"] = "Exam Edited Successfully";
                     return RedirectToAction("ViewExam");
                 }
                 else
@@ -246,6 +248,7 @@ namespace OnlineExamManagement.Controllers
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
+                    TempData["Success"] = "Exam Deleted Successfully";
                     return RedirectToAction("ViewExam");
                 }
 
@@ -313,7 +316,7 @@ namespace OnlineExamManagement.Controllers
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
-
+                    TempData["Success"] = "Question Created Successfully";
                     return RedirectToAction("ViewQuestion");
                 }
                 else
@@ -372,7 +375,7 @@ namespace OnlineExamManagement.Controllers
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
-
+                    TempData["Success"] = "Question Edited Successfully";
                     return RedirectToAction("ViewQuestion");
                 }
                 else
@@ -432,7 +435,7 @@ namespace OnlineExamManagement.Controllers
                 var test = response.Result;
                 if (test.IsSuccessStatusCode)
                 {
-
+                    TempData["Success"] = "Question Deleted Successfully";
                     return RedirectToAction("ViewQuestion");
                 }
                 else

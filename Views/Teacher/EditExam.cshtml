@@ -5,14 +5,15 @@
 }
 
 <div class="t_createexam container-fluid">
-    <h1>Edit Exam</h1>
+    <h1>Edit Exam</h1><br /><br />
     <div class="t_createexamform container">
         @using (Html.BeginForm(new { @class = "createexam" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group container">
-
+                
+                <br />
                 <div class="form-group row">
                     @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "col-sm-2 col-form-label" })
                     <div class="form-group col-md-4">

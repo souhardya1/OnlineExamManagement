@@ -11,8 +11,18 @@
     <!--QUESTIONS-->
 
     <h3>Welcome,  @User.Identity.Name</h3>
-    <div class="container-fluid"><a class="t_create" href="@Url.Action("CreateQuestion","Teacher")">CREATE</a></div>
-    <h1>QUESTIONS</h1>
+    @{
+        if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible" role="alert" id="warning">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong class="t_success">@TempData["Success"]</strong>
+            </div>
+        }
+    }
+    <h1 style="text-align:center">QUESTIONS</h1>
+    <div class="container-fluid"><a class="t_create" href="@Url.Action("CreateQuestion","Teacher")">CREATE</a></div><br /><br />
+
     <div class="container-fluid t_questiontable">
         <table>
             <tr>

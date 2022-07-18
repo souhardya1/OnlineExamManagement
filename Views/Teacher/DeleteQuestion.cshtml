@@ -8,11 +8,13 @@
 <div class="t_deletequestion container-fluid">
     <h1>Delete Question</h1>
     <h2>Are you sure you want to delete this?</h2>
+    <br />
     <div class="t_deletequestionform container">
         @using (Html.BeginForm(new { @class = "deletequestion" }))
         {
             @Html.AntiForgeryToken()
             <div class="form-group container">
+                <br />
                 <div class="form-group row">
                     <label for="question" class="col-sm-2 col-form-label">Question</label>
                     <div class="form-group col-md-4">

@@ -6,10 +6,22 @@
 <div class="t_viewexam container-fluid">
 
     <!--VIEWEXAM-->
-    
-    <h1>EXAMS</h1>
+    <h3>Welcome,  @User.Identity.Name</h3>
+    <h1>EXAMS</h1><br /><br />
+    @{
+        if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success alert-dismissible" role="alert" id="warning">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong class="t_success">@TempData["Success"]</strong>
+            </div>
+        }
+    }
+
+    <div class="mt-5" style="margin-left:200px;">@Html.ActionLink("Create an Exam", "CreateExam", "Teacher", new { @class = "t_create" })</div><br /><br />
     <div class="container-fluid t_examtable">
-        <div class="mt-5">@Html.ActionLink("Create an Exam", "CreateExam", "Teacher", new { @class = "t_create" })</div>
+
+
         <table>
             <tr>
                 <th width="25%">@Html.DisplayNameFor(model => model.Course.Name)</th>
@@ -50,7 +62,7 @@
                         @Html.DisplayFor(modelItem => item.Active)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditExam", new { id = item.Id }, new { @class = "t_edit" }) 
+                        @Html.ActionLink("Edit", "EditExam", new { id = item.Id }, new { @class = "t_edit" })
                         @Html.ActionLink("Delete", "DeleteExam", new { id = item.Id }, new { @class = "t_delete" })
                     </td>
                 </tr>

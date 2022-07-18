@@ -1,6 +1,8 @@
 ﻿
 /*TEACHER SIGNIN FORM*/
-
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 /*Page color*/
 .t_signin {
     background: url('images/loginmain.jpeg');
@@ -13,6 +15,7 @@
     width: 100%;
     height: 100%;
 }
+
 
 /*Components*/
 .t_signinform {
@@ -99,7 +102,7 @@
     /*Components*/
     .t_landing .buttons {
         padding: 300px;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family: 'Roboto', sans-serif;
     }
 
         .t_landing .buttons a {
@@ -144,7 +147,7 @@
     /*Components*/
 
     .t_leaderboard h1 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: 'Roboto', sans-serif;
         text-align: center;
     }
 
@@ -152,7 +155,7 @@
         margin-top: 10px;
         font-size: 15px;
         border: 1px solid rgb(192, 192, 192);
-        font-family: Arial, Helvetica, sans-serif;
+       
         text-align: center;
     }
 
@@ -207,7 +210,7 @@
 }
 
     .t_viewexam h1 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: 'Roboto', sans-serif;
         text-align: center;
     }
 
@@ -215,7 +218,7 @@
         margin-top: 10px;
         font-size: 15px;
         border: 1px solid rgb(192, 192, 192);
-        font-family: Arial, Helvetica, sans-serif;
+       
         text-align: center;
     }
 
@@ -305,6 +308,7 @@
         text-decoration: none;
         display: inline-block;
         margin-right: 25px;
+        margin-left:200px;
         font-weight: bold;
         font-size: 15px;
         box-shadow: 0px 0px 2px 2px rgb(179, 178, 178);
@@ -343,7 +347,7 @@
 }
 
     .t_question h2 {
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-family: 'Roboto', sans-serif;
         text-align: center;
     }
 
@@ -351,7 +355,7 @@
         margin-top: 10px;
         font-size: 15px;
         border: 1px solid rgb(192, 192, 192);
-        font-family: Arial, Helvetica, sans-serif;
+       
         text-align: center;
     }
 
@@ -1056,3 +1060,9 @@
         text-decoration: none;
         transition-delay: 0.25s;
     }
+
+
+
+.t_success{
+    color:black;
+}
