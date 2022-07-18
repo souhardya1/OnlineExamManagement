@@ -407,6 +407,12 @@ namespace OnlineExamManagement.Controllers
             return View();
         }
 
-        public 
+      
+        public ActionResult instructions(int id)
+        {
+
+            ViewData["CourseRefId"] = id;
+            return View();
+        }
     }
 }

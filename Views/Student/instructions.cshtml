@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "instructions";
+
+
+}
+
+
+
+<div style="text-align:center;width:100%">
+    <h2>Instructions</h2><br />
+    @{ if (ViewData["CourseRefId"].ToString() == "1")
+        {
+            <h3>You are going to start a ASP .Net MVC Exam with Code @Request.Url.ToString().Substring(52, Request.Url.ToString().Length - 52)</h3>
+
+        }
+        else if (ViewData["CourseRefId"].ToString() == "1")
+        {
+            <h3>You are going to start a Angular Exam with Code  @Request.Url.ToString().Substring(52, Request.Url.ToString().Length - 52)</h3>
+        }
+    }
+    <h3 style="color:red">Some Points to Keep in mind</h3>
+    <strong>You will have maximum of 10 questions</strong><br />
+    <strong>You have to submit each question to go to the next question</strong><br />
+    <strong>Once you submit a question you cannot go back to the previous one</strong><br />
+    <strong>You MUST not try to change/access the url by any means your exam will get cancelled from that very moment</strong><br /><br /><br />
+
+
+    <button class="s_button">@Html.ActionLink("Start Exam", "MainExam", "Student", new { id = ViewData["CourseRefId"] }, null)</button> &nbsp;&nbsp;,&nbsp;
+    <button class="btn btn-danger">@Html.ActionLink("Go Back", "AvailableExams", "Student", null, new { @style = "text-decoration:none" })</button>
+
+</div>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null }
+    </script>
+}

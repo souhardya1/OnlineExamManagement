@@ -301,6 +301,8 @@
     <Content Include="Views\Teacher\EditExam.cshtml" />
     <Content Include="Views\Error\ErrorNotFound.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Shared\_Instructions.cshtml" />
+    <Content Include="Views\Student\instructions.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
