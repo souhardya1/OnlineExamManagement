@@ -111,34 +111,44 @@ namespace OnlineExamManagement.Controllers
         [Authorize]
         public ActionResult CreateExam()
         {
+            //List<Course> courseList = db.Courses.ToList();
+            //ViewBag.Courses = new SelectList(courseList, "id", "Name");
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateExam(Exam e)
         {
-            try
+            if (ModelState.IsValid==true)
             {
-                string url = "https://localhost:44301/api/TeacherExamApi";
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.PostAsJsonAsync<Exam>(url, e);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                try
                 {
-                    TempData["Success"] = "Exam Created Successfully";
-                    return RedirectToAction("ViewExam");
+                    string url = "https://localhost:44301/api/TeacherExamApi";
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.PostAsJsonAsync<Exam>(url, e);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Exam Created Successfully";
+                        return RedirectToAction("ViewExam");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Create Exam" });
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Create Exam" });
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = ex.Message });
                 }
             }
-            catch (Exception ex)
+            else
             {
-                return RedirectToAction("ErrorNotFound", "Error", new { msg = ex.Message });
-            }         
+                return View();
+            }
+                     
         }
 
 
@@ -177,29 +187,37 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public ActionResult EditExam(Exam e)
         {
-            try
+            if (ModelState.IsValid == true)
             {
-                string url = "https://localhost:44301/api/TeacherExamApi";
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.PutAsJsonAsync<Exam>(url, e);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                try
                 {
-                    TempData["Success"] = "Exam Edited Successfully";
-                    return RedirectToAction("ViewExam");
+                    string url = "https://localhost:44301/api/TeacherExamApi";
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.PutAsJsonAsync<Exam>(url, e);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Exam Edited Successfully";
+                        return RedirectToAction("ViewExam");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Edit Exam with Id" });
+                    }
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Edit Exam with Id" });
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = ex.Message });
                 }
-                
             }
-            catch (Exception ex)
+            else
             {
-                return RedirectToAction("ErrorNotFound", "Error", new { msg = ex.Message });
-            }          
+                return View();
+            }
+                      
         }
 
 
@@ -238,29 +256,37 @@ namespace OnlineExamManagement.Controllers
         [HttpPost,ActionName("DeleteExam")]
         public ActionResult DeleteExamConfirmed(int id)
         {
-            try
+            if (ModelState.IsValid)
             {
-                string url = "https://localhost:44301/api/TeacherExamApi/" + id.ToString();
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.DeleteAsync(url);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                try
                 {
-                    TempData["Success"] = "Exam Deleted Successfully";
-                    return RedirectToAction("ViewExam");
-                }
+                    string url = "https://localhost:44301/api/TeacherExamApi/" + id.ToString();
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.DeleteAsync(url);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Exam Deleted Successfully";
+                        return RedirectToAction("ViewExam");
+                    }
 
-                else
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Delete Exam" });
+                    }
+                }
+                catch (Exception e)
                 {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Delete Exam" });
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
                 }
             }
-            catch (Exception e)
+            else
             {
-                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
-            }          
+                return View();
+            }
+                      
         }
 
 
@@ -306,28 +332,36 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public ActionResult CreateQuestion(Question q)
         {
-            try
+            if (ModelState.IsValid == true)
             {
-                string url = "https://localhost:44301/api/TeacherQuestionApi";
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.PostAsJsonAsync<Question>(url, q);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                try
                 {
-                    TempData["Success"] = "Question Created Successfully";
-                    return RedirectToAction("ViewQuestion");
+                    string url = "https://localhost:44301/api/TeacherQuestionApi";
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.PostAsJsonAsync<Question>(url, q);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Question Created Successfully";
+                        return RedirectToAction("ViewQuestion");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to create Question" });
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to create Question" }); 
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
                 }
             }
-            catch (Exception e)
+            else
             {
-                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+                return View();
             }
+            
         }
 
 
@@ -365,29 +399,37 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public ActionResult EditQuestion(Question q)
         {
-            try
+            if(ModelState.IsValid == true)
             {
-                string url = "https://localhost:44301/api/TeacherQuestionApi";
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.PutAsJsonAsync<Question>(url, q);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                try
                 {
-                    TempData["Success"] = "Question Edited Successfully";
-                    return RedirectToAction("ViewQuestion");
-                }
-                else
-                {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to edit Question with Id" });
-                }
+                    string url = "https://localhost:44301/api/TeacherQuestionApi";
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.PutAsJsonAsync<Question>(url, q);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Question Edited Successfully";
+                        return RedirectToAction("ViewQuestion");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to edit Question with Id" });
+                    }
 
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+                }
             }
-            catch (Exception e)
+            else
             {
-                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
-            }           
+                return View();
+            }
+                       
         }
 
 
@@ -425,28 +467,36 @@ namespace OnlineExamManagement.Controllers
         [HttpPost, ActionName("DeleteQuestion")]
         public ActionResult DeleteQuestionConfirmed(int id)
         {
-            try
+            if (ModelState.IsValid == true)
             {
-                string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.DeleteAsync(url);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                try
                 {
-                    TempData["Success"] = "Question Deleted Successfully";
-                    return RedirectToAction("ViewQuestion");
+                    string url = "https://localhost:44301/api/TeacherQuestionApi/" + id.ToString();
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.DeleteAsync(url);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        TempData["Success"] = "Question Deleted Successfully";
+                        return RedirectToAction("ViewQuestion");
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to delete Question with Id" });
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to delete Question with Id" });
-                }   
+                    return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
+                }
             }
-            catch (Exception e)
+            else
             {
-                return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
-            }           
+                return View();
+            }
+                       
         }
 
 
