@@ -121,7 +121,7 @@ a:link {
 
     .s_button:hover {
         background-color: white;
-        color: #2ea44f;
+        color:black;
     }
 
     .s_button:focus {
