@@ -8,19 +8,6 @@
     <!--VIEWEXAM-->
     <h3>Welcome,  @User.Identity.Name</h3>
     <h1>EXAMS</h1><br /><br />
-    @using (Html.BeginForm("ViewExam","Teacher",FormMethod.Post))
-     {
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-10">
-                    <input type="text" name="searchText" placeholder="Seach" class="form-control" />
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </div>
-            </div>
-        </div>
-
-
-     }
     @{
         if (TempData["Success"] != null)
         {
@@ -31,10 +18,20 @@
         }
     }
 
-    <div class="mt-5">@Html.ActionLink("Create an Exam", "CreateExam", "Teacher", new { @class = "t_create" })</div><br /><br />
+    <div class="container-fluid" style="margin-right:10% ">
+        <a class="t_create" href="@Url.Action("CreateExam","Teacher")">CREATE</a>
+        @using (Html.BeginForm("ViewExam", "Teacher", FormMethod.Post, new { @style = "float:right" }))
+        {
+
+
+            <input class="form-control" type="text" name="searchText" placeholder="Search" /><br />
+            <button type="submit" class="btn btn-primary">Search</button>
+        }
+    </div><br /><br />
+
     <div class="container-fluid t_examtable">
 
-       
+
         <table>
             <tr>
                 <th width="25%">@Html.DisplayNameFor(model => model.Course.Name)</th>

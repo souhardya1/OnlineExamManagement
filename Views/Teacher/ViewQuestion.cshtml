@@ -11,6 +11,8 @@
     <!--QUESTIONS-->
 
     <h3>Welcome,  @User.Identity.Name</h3>
+
+    <h1 style="text-align:center">QUESTIONS</h1>
     @{
         if (TempData["Success"] != null)
         {
@@ -21,19 +23,18 @@
         }
     }
 
-    @using (Html.BeginForm("ViewQuestion", "Teacher", FormMethod.Post))
-    {
-        <div class="container">
-            <div style="float:right">
-                <input class="form-control" type="text" placeholder="Search"/>
-                <button type="submit">Search</button>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <a class="t_create" href="@Url.Action("CreateQuestion","Teacher")">CREATE</a>
+        @using (Html.BeginForm("ViewQuestion", "Teacher", FormMethod.Post, new { @style = "float:right" }))
+        {
 
 
-    }
-    <h1 style="text-align:center">QUESTIONS</h1>
-    <div class="container-fluid"><a class="t_create" href="@Url.Action("CreateQuestion","Teacher")">CREATE</a></div><br /><br />
+            <input class="form-control" type="text" name="searchText" placeholder="Search" /><br />
+            <button type="submit" class="btn btn-primary">Search</button>
+         }
+    </div><br /><br />
+
+
 
     <div class="container-fluid t_questiontable">
         <table>
