@@ -107,6 +107,17 @@ namespace OnlineExamManagement.Controllers
             }             
         }
 
+        [HttpPost]
+        public ActionResult ViewExam(string searchText)
+        {
+            if( searchText != null)
+            {
+                var searchResult = db.Exams.Where(x => x.Code.Contains(searchText)).ToList();
+                return View(searchResult);
+            }
+            return View();
+        }
+
 
         [Authorize]
         public ActionResult CreateExam()
@@ -322,6 +333,18 @@ namespace OnlineExamManagement.Controllers
                 return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
             }
         }
+
+        [HttpPost]
+        public ActionResult ViewQuestion(string searchText)
+        {
+            if (searchText != null)
+            {
+                var searchResult = db.Questions.Where(x => x.Ques.Contains(searchText) ||  x.OptionA.Contains(searchText) ||   x.OptionB.Contains(searchText) ||  x.OptionC.Contains(searchText) || x.OptionD.Contains(searchText) ).ToList();
+                return View(searchResult);
+            }
+            return View();
+        }
+
 
         [Authorize]
         public ActionResult CreateQuestion()

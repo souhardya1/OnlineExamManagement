@@ -20,6 +20,18 @@
             </div>
         }
     }
+
+    @using (Html.BeginForm("ViewQuestion", "Teacher", FormMethod.Post))
+    {
+        <div class="container">
+            <div style="float:right">
+                <input class="form-control" type="text" placeholder="Search"/>
+                <button type="submit">Search</button>
+            </div>
+        </div>
+
+
+    }
     <h1 style="text-align:center">QUESTIONS</h1>
     <div class="container-fluid"><a class="t_create" href="@Url.Action("CreateQuestion","Teacher")">CREATE</a></div><br /><br />
 
