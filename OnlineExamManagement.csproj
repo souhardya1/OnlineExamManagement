@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202207190746521_AddedTotalMarksInStudentTable.designer.cs">
       <DependentUpon>202207190746521_AddedTotalMarksInStudentTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207191031332_AddedDisplayNamePropertyToStudentMarks.cs" />
+    <Compile Include="Migrations\202207191031332_AddedDisplayNamePropertyToStudentMarks.designer.cs">
+      <DependentUpon>202207191031332_AddedDisplayNamePropertyToStudentMarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Exam.cs" />
@@ -367,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207190746521_AddedTotalMarksInStudentTable.resx">
       <DependentUpon>202207190746521_AddedTotalMarksInStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207191031332_AddedDisplayNamePropertyToStudentMarks.resx">
+      <DependentUpon>202207191031332_AddedDisplayNamePropertyToStudentMarks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

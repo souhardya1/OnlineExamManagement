@@ -87,36 +87,41 @@ namespace OnlineExamManagement.Controllers
         {
             try
             {
-                if (IsValid(s))
-                {
-                    FormsAuthentication.SetAuthCookie(s.Email.ToString(), false);
-                    Session["studentEmail"] = s.Email.ToString();
 
-                    Student stud = db.Students.Where(x => x.Email == s.Email).FirstOrDefault();
-
-
-                    Session["userId"] = stud.Id;
-                    //System.Diagnostics.Debug.WriteLine(s.Id);
-                    //System.Diagnostics.Debug.WriteLine(s.Email);
-                    if (stud.Marks4 == null)
+                    if (IsValid(s))
                     {
-                        Session["IsEligible"] = "1";  // yes eligible
+                        FormsAuthentication.SetAuthCookie(s.Email.ToString(), false);
+                        Session["studentEmail"] = s.Email.ToString();
+
+                        Student stud = db.Students.Where(x => x.Email == s.Email).FirstOrDefault();
+
+
+                        Session["userId"] = stud.Id;
+                        //System.Diagnostics.Debug.WriteLine(s.Id);
+                        //System.Diagnostics.Debug.WriteLine(s.Email);
+                        if (stud.Marks4 == null)
+                        {
+                            Session["IsEligible"] = "1";  // yes eligible
+                        }
+                        else
+                        {
+                            Session["IsEligible"] = "0";  // no max number of exams completed
+
+                        }
+                        //System.Diagnostics.Debug.WriteLine(".smarks4 is ",stud.Marks4);
+                        //System.Diagnostics.Debug.WriteLine("iseligible is: ",Session["IsEligible"].ToString());
+
+                        return RedirectToAction("AvailableExams");
                     }
                     else
                     {
-                        Session["IsEligible"] = "0";  // no max number of exams completed
-
+                        ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
+                        return View();
                     }
-                    //System.Diagnostics.Debug.WriteLine(".smarks4 is ",stud.Marks4);
-                    //System.Diagnostics.Debug.WriteLine("iseligible is: ",Session["IsEligible"].ToString());
-     
-                    return RedirectToAction("AvailableExams");
-                }
-                else
-                {
-                    ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
-                    return View();
-                }
+
+                
+
+                
             }
             catch (Exception e)
             {
@@ -380,9 +385,10 @@ namespace OnlineExamManagement.Controllers
                         display.Wait();
 
                         studentDetails = display.Result;
-                        //System.Diagnostics.Debug.WriteLine(id);
-                        //System.Diagnostics.Debug.WriteLine(studentDetails);
-                        //System.Diagnostics.Debug.WriteLine("hoho");
+                        List<string> givenExams = db.ExamStudents.Where(x => x.Email == User.Identity.Name).Select(x => x.ExamCode).ToList();
+                        ViewBag.GivenExams = givenExams;
+
+
                         return View(studentDetails);
                     }
                     else

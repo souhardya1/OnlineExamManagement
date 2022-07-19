@@ -24,7 +24,13 @@
                 <td>@Model.Marks4</td>
             </tr>
             <tr>
-                <th></th>
+                @{
+                    foreach (var i in ViewBag.GivenExams)
+                    {
+                        <th>@i</th>
+
+                    }
+                } 
             </tr>
         </table>
 
