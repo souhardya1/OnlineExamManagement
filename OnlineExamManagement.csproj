@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202207190232350_AddedEamStudentDB.designer.cs">
       <DependentUpon>202207190232350_AddedEamStudentDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207190746521_AddedTotalMarksInStudentTable.cs" />
+    <Compile Include="Migrations\202207190746521_AddedTotalMarksInStudentTable.designer.cs">
+      <DependentUpon>202207190746521_AddedTotalMarksInStudentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Exam.cs" />
@@ -360,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207190232350_AddedEamStudentDB.resx">
       <DependentUpon>202207190232350_AddedEamStudentDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207190746521_AddedTotalMarksInStudentTable.resx">
+      <DependentUpon>202207190746521_AddedTotalMarksInStudentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

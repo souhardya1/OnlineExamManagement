@@ -58,18 +58,21 @@ namespace OnlineExamManagement.Controllers
                     {
                         System.Diagnostics.Debug.WriteLine("Inside if marks1");
                         stud.Marks1 = Marks.Obtained;
+                        stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else if (stud.Marks2 == null)
                     {
                         System.Diagnostics.Debug.WriteLine("Inside if marks2");
                         stud.Marks2 = Marks.Obtained;
+                        stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else if (stud.Marks3 == null)
                     {
                         System.Diagnostics.Debug.WriteLine("Inside if marks3");
                         stud.Marks3 = Marks.Obtained;
+                        stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else if (stud.Marks4 == null)
@@ -79,6 +82,7 @@ namespace OnlineExamManagement.Controllers
 
                         stud.Password = stud.Password;
                         stud.Marks4 = Marks.Obtained;
+                        stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else
