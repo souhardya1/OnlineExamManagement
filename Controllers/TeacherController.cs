@@ -523,28 +523,110 @@ namespace OnlineExamManagement.Controllers
 
 
         [Authorize]
-        public ActionResult LeaderBoard()
+        public ActionResult LeaderBoard(string sortOrder= "",string sortBy = "")
         {
             try
             {
-                List<Student> studentlst = new List<Student>();
-                string url = "https://localhost:44301/api/StudentApi";
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                var response = client.GetAsync(url);
-                response.Wait();
-                var test = response.Result;
-                if (test.IsSuccessStatusCode)
+                if (sortOrder != "" && sortBy != "")
                 {
-                    var display = test.Content.ReadAsAsync<List<Student>>();
-                    display.Wait();
-                    studentlst = display.Result;
-                    return View(studentlst);
+                    List<Student> stud = db.Students.ToList();
+                    switch (sortBy)
+                    {
+                        case "Marks1":
+                            {
+
+                                if (sortOrder == "A")
+                                {
+                                    stud = db.Students.OrderBy(x => x.Marks1).ToList();
+                                }
+                                else
+                                {
+                                    stud = db.Students.OrderByDescending(x => x.Marks1).ToList();
+                                }
+                                break;
+                            }
+
+                        case "Marks2":
+                            {
+
+                                if (sortOrder == "A")
+                                {
+                                    stud = db.Students.OrderBy(x => x.Marks2).ToList();
+                                }
+                                else
+                                {
+                                    stud = db.Students.OrderByDescending(x => x.Marks2).ToList();
+                                }
+                                break;
+                            }
+
+                        case "Marks3":
+                            {
+
+                                if (sortOrder == "A")
+                                {
+                                    stud = db.Students.OrderBy(x => x.Marks3).ToList();
+                                }
+                                else
+                                {
+                                    stud = db.Students.OrderByDescending(x => x.Marks3).ToList();
+                                }
+                                break;
+                            }
+
+                        case "Marks4":
+                            {
+
+                                if (sortOrder == "A")
+                                {
+                                    stud = db.Students.OrderBy(x => x.Marks4).ToList();
+                                }
+                                else
+                                {
+                                    stud = db.Students.OrderByDescending(x => x.Marks4).ToList();
+                                }
+                                break;
+                            }
+
+                        case "Total":
+                            {
+
+                                if (sortOrder == "A")
+                                {
+                                    stud = db.Students.OrderBy(x => x.Total).ToList();
+                                }
+                                else
+                                {
+                                    stud = db.Students.OrderByDescending(x => x.Total).ToList();
+                                }
+                                break;
+                            }
+                    }
+                    return View(stud);
                 }
+
                 else
                 {
-                    return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch Students" });
+                    List<Student> studentlst = new List<Student>();
+                    string url = "https://localhost:44301/api/StudentApi";
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(url);
+                    var response = client.GetAsync(url);
+                    response.Wait();
+                    var test = response.Result;
+                    if (test.IsSuccessStatusCode)
+                    {
+                        var display = test.Content.ReadAsAsync<List<Student>>();
+                        display.Wait();
+                        studentlst = display.Result;
+                        return View(studentlst);
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to fetch Students" });
+                    }
                 }
+                
 
             }
             catch (Exception e)

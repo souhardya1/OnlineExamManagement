@@ -34,7 +34,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Active)
                         </th>
-                        <th></th>
+                        
                     </tr>
 
                     @foreach (var item in Model)
@@ -88,13 +88,13 @@
                                                 }
                                                 else
                                                 {
-                                                    <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, new { @style = "text-deocration:none" })</button>
+                                                    <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code })</button>
                                                 }
 
                                             }
                                             else
                                             {
-                                                <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, new { @style = "text-deocration:none" })</button>
+                                                <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code })</button>
                                             }
 
                                         }

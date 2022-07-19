@@ -14,6 +14,7 @@
             <tr>
                 <th width="25%">
                     @Html.DisplayNameFor(model => model.Name)
+                    
                 </th>
                 <th width="25%">
                     @Html.DisplayNameFor(model => model.Email)
@@ -21,20 +22,30 @@
 
                 <th width="10%">
                     @Html.DisplayNameFor(model => model.Marks1)
+                    @Html.ActionLink("↑", "LeaderBoard", "Teacher", new { sortOrder = "A",sortBy = "Marks1"}, new { @style = "color:white" })
+                    @Html.ActionLink("↓", "LeaderBoard", "Teacher", new { sortOrder = "D", sortBy = "Marks1" }, new { @style = "color:white" })
                 </th>
                 <th width="10%">
                     @Html.DisplayNameFor(model => model.Marks2)
+                    @Html.ActionLink("↑", "LeaderBoard", "Teacher", new { sortOrder = "A", sortBy = "Marks2" }, new { @style = "color:white" })
+                    @Html.ActionLink("↓", "LeaderBoard", "Teacher", new { sortOrder = "D", sortBy = "Marks2" }, new { @style = "color:white" })
                 </th>
                 <th width="10%">
                     @Html.DisplayNameFor(model => model.Marks3)
+                    @Html.ActionLink("↑", "LeaderBoard", "Teacher", new { sortOrder = "A", sortBy = "Marks3" }, new { @style = "color:white" })
+                    @Html.ActionLink("↓", "LeaderBoard", "Teacher", new { sortOrder = "D", sortBy = "Marks3" }, new { @style = "color:white" })
                 </th>
                 <th width="10%">
                     @Html.DisplayNameFor(model => model.Marks4)
+                    @Html.ActionLink("↑", "LeaderBoard", "Teacher", new { sortOrder = "A", sortBy = "Marks4" }, new { @style = "color:white" })
+                    @Html.ActionLink("↓", "LeaderBoard", "Teacher", new { sortOrder = "D", sortBy = "Marks4" }, new { @style = "color:white" })
                 </th>
                 <th width="10%">
-                    Total
+                    @Html.DisplayNameFor(model => model.Total)
+                    @Html.ActionLink("↑", "LeaderBoard", "Teacher", new { sortOrder = "A", sortBy = "Total" }, new { @style = "color:white" })
+                    @Html.ActionLink("↓", "LeaderBoard", "Teacher", new { sortOrder = "D", sortBy = "Total" }, new { @style = "color:white" })
                 </th>
-                <th></th>
+
             </tr>
             @foreach (var item in Model)
             {
@@ -59,7 +70,8 @@
                         @Html.DisplayFor(modelItem => item.Marks4)
                     </td>
                     <td>
-                        @(Convert.ToInt32(item.Marks1) + Convert.ToInt32(item.Marks2) + Convert.ToInt32(item.Marks3) + Convert.ToInt32(item.Marks4))
+                        @Html.DisplayFor(modelItem => item.Total)
+                        
                     </td>
                 </tr>
              }
