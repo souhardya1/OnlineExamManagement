@@ -11,11 +11,9 @@ namespace OnlineExamManagement.Models
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
-
         public DbSet<Exam> Exams { get; set; }
-
         public DbSet<Question> Questions { get; set; }
-
+        public DbSet<ExamStudent> ExamStudents { get; set; }
 
     }
 }

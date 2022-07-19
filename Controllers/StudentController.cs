@@ -18,6 +18,7 @@ namespace OnlineExamManagement.Controllers
         {
             try
             {
+ 
                 return View();
             }
             catch (Exception e)
@@ -163,6 +164,10 @@ namespace OnlineExamManagement.Controllers
                     {
                         var display = test.Content.ReadAsAsync<List<Exam>>();
                         display.Wait();
+
+                        List<string> givenExams = db.ExamStudents.Where(x => x.Email ==  User.Identity.Name).Select(x => x.ExamCode).ToList();
+                        ViewBag.GivenExams = givenExams;
+
 
                         activeExams = display.Result;
                         return View(activeExams);
@@ -410,6 +415,14 @@ namespace OnlineExamManagement.Controllers
       
         public ActionResult instructions(int id)
         {
+            string email = User.Identity.Name;
+            string code = @Request.Url.ToString().Substring(52, Request.Url.ToString().Length - 52);
+            ExamStudent es = new ExamStudent();
+            es.Email = email;
+            es.ExamCode = code;
+
+            db.ExamStudents.Add(es);
+            db.SaveChanges();
 
             ViewData["CourseRefId"] = id;
             return View();

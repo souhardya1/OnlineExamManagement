@@ -199,9 +199,14 @@
     <Compile Include="Migrations\202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.designer.cs">
       <DependentUpon>202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207190232350_AddedEamStudentDB.cs" />
+    <Compile Include="Migrations\202207190232350_AddedEamStudentDB.designer.cs">
+      <DependentUpon>202207190232350_AddedEamStudentDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Exam.cs" />
+    <Compile Include="Models\ExamStudent.cs" />
     <Compile Include="Models\Marks.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Question.cs" />
@@ -352,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.resx">
       <DependentUpon>202207061451508_AddedDisplayNameToExamAndQuestionModelAlsoAddedPasswordAndEmailRegexToStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207190232350_AddedEamStudentDB.resx">
+      <DependentUpon>202207190232350_AddedEamStudentDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

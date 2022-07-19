@@ -75,8 +75,28 @@
                                     {
                                         if (item.Active == 1)
                                         {
-                                         <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, new { @style = "color:white" })</button>
-                                            
+
+
+
+
+                                            if (ViewBag.GivenExams != null)
+                                            {
+                                                List<string> completed = ViewBag.GivenExams as List<string>;
+                                                if (completed.Contains(item.Code))
+                                                {
+                                                    <button class="inv-btn" role="button">Not Available</button>
+                                                }
+                                                else
+                                                {
+                                                    <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, new { @style = "text-deocration:none" })</button>
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, new { @style = "text-deocration:none" })</button>
+                                            }
+
                                         }
                                         else
                                         {
@@ -96,6 +116,7 @@
             <div class="container">
                 <h2>You have completed maximum number of exams. Please contact your teacher for further instructions.</h2>
             </div>
+
 
         }
     }
