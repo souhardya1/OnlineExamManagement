@@ -40,9 +40,19 @@ namespace OnlineExamManagement.Controllers
         [HttpPost]
         public IHttpActionResult StudentInsert(Student s)
         {
-            db.Students.Add(s);
-            db.SaveChanges();
-            return Ok();
+            try
+            {
+                db.Students.Add(s);
+                db.SaveChanges();
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.Write(ex.ToString());  
+                return null;
+            }
+
         }
 
         [HttpPut]
@@ -51,6 +61,10 @@ namespace OnlineExamManagement.Controllers
             try
             {
                 var stud = db.Students.Where(x => x.Id == id).FirstOrDefault();
+                if (stud.Total == null)
+                {
+                    stud.Total = 0;
+                }
                 System.Diagnostics.Debug.WriteLine("Inside try block");
                 if (stud != null)
                 {

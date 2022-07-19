@@ -15,9 +15,9 @@
     <link href="teacher.css" rel="stylesheet" />
     @{ if (Session["IsEligible"].ToString() == "1")
         {
+            <h2>AvailableExams</h2><br /><br />
+            <div class="container my-5 s_aexam">
 
-            <div class="container my-5">
-                <h2>AvailableExams</h2>
 
                 <table class="t">
                     <tr>
@@ -34,7 +34,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Active)
                         </th>
-                        
+
                     </tr>
 
                     @foreach (var item in Model)
@@ -88,13 +88,13 @@
                                                 }
                                                 else
                                                 {
-                                                    <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code })</button>
+                                                    <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, null)</button>
                                                 }
 
                                             }
                                             else
                                             {
-                                                <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code })</button>
+                                                <button class="s_button">@Html.ActionLink("Start Exam", "Instructions", "Student", new { id = item.CourseRefId, name = item.Code }, null)</button>
                                             }
 
                                         }
