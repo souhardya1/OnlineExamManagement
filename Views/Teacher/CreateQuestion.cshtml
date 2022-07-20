@@ -34,7 +34,7 @@
                                                                         new SelectListItem{ Text="SQL", Value = "3" },
 
                                                                    })
-                            @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.CourseRefId, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
@@ -80,7 +80,7 @@
                                                                          new SelectListItem{ Text="Option C", Value = "optionC" },
                                                                          new SelectListItem{ Text="Option D", Value = "optionD" },
                                                                     }, new { @class = "form-control form-group" })
-                            @Html.ValidationMessageFor(model => model.Correct, "Correct Action is Required", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.Correct, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
