@@ -32,7 +32,7 @@
                                                                    new SelectListItem{ Text="SQL", Value = "3" },
 
                                                               }, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.CourseRefId, "Course Name Required", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.CourseRefId, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                                                                    new SelectListItem{ Text="No", Value = "0" },
 
                                                               }, new { @class = "form-control form-group" })
-                        @Html.ValidationMessageFor(model => model.Active, "Active is required", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
