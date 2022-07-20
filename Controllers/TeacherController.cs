@@ -35,8 +35,7 @@ namespace OnlineExamManagement.Controllers
 
                     Session["userId"] = teac.Id;
 
-                    //System.Diagnostics.Debug.WriteLine(teac.Id);
-                    //System.Diagnostics.Debug.WriteLine(t.Email);
+
 
                     return RedirectToAction("LandingPage");
                 }
@@ -61,9 +60,12 @@ namespace OnlineExamManagement.Controllers
                         FirstOrDefault();
             if (cred != null)
             {
-                return (t.Email == cred.Email && t.Password == cred.Password);
+                if(cred.Password == t.Password)
+                {            
+                    return true;
+                }
+                return false;
             }
-
             else
             {
                 return false;
@@ -122,8 +124,6 @@ namespace OnlineExamManagement.Controllers
         [Authorize]
         public ActionResult CreateExam()
         {
-            //List<Course> courseList = db.Courses.ToList();
-            //ViewBag.Courses = new SelectList(courseList, "id", "Name");
             return View();
         }
 
@@ -166,7 +166,6 @@ namespace OnlineExamManagement.Controllers
         [Authorize]
         public ActionResult EditExam(int id)
         {
-
             try
             {
                 Exam e = null; ;
@@ -282,7 +281,6 @@ namespace OnlineExamManagement.Controllers
                         TempData["Success"] = "Exam Deleted Successfully";
                         return RedirectToAction("ViewExam");
                     }
-
                     else
                     {
                         return RedirectToAction("ErrorNotFound", "Error", new { msg = "Failed to Delete Exam" });
@@ -296,11 +294,8 @@ namespace OnlineExamManagement.Controllers
             else
             {
                 return View();
-            }
-                      
+            }                    
         }
-
-
 
 
         // Question Part
@@ -333,6 +328,7 @@ namespace OnlineExamManagement.Controllers
                 return RedirectToAction("ErrorNotFound", "Error", new { msg = e.Message });
             }
         }
+
 
         [HttpPost]
         public ActionResult ViewQuestion(string searchText)
@@ -641,6 +637,5 @@ namespace OnlineExamManagement.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
-
     }
 }
