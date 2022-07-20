@@ -52,7 +52,6 @@ namespace OnlineExamManagement.Controllers
                 System.Diagnostics.Debug.Write(ex.ToString());  
                 return null;
             }
-
         }
 
         [HttpPut]
@@ -70,30 +69,24 @@ namespace OnlineExamManagement.Controllers
                 {
                     if (stud.Marks1 == null)
                     {
-                        System.Diagnostics.Debug.WriteLine("Inside if marks1");
                         stud.Marks1 = Marks.Obtained;
                         stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else if (stud.Marks2 == null)
                     {
-                        System.Diagnostics.Debug.WriteLine("Inside if marks2");
                         stud.Marks2 = Marks.Obtained;
                         stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else if (stud.Marks3 == null)
                     {
-                        System.Diagnostics.Debug.WriteLine("Inside if marks3");
                         stud.Marks3 = Marks.Obtained;
                         stud.Total += Marks.Obtained;
                         db.SaveChanges();
                     }
                     else if (stud.Marks4 == null)
                     {
-                        System.Diagnostics.Debug.WriteLine("Inside if marks4");
-                        System.Diagnostics.Debug.WriteLine(stud.Password);
-
                         stud.Password = stud.Password;
                         stud.Marks4 = Marks.Obtained;
                         stud.Total += Marks.Obtained;
@@ -118,7 +111,6 @@ namespace OnlineExamManagement.Controllers
                     foreach (var validationError in entityValidationErrors.ValidationErrors)
                     {
                         System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-
                     }
                 }
                 return null;

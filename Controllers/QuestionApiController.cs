@@ -16,11 +16,8 @@ namespace OnlineExamManagement.Controllers
 
         public IHttpActionResult GetQuestions(int id)
         {
-           
             var examQuestions = db.Questions.Where(x => x.Course.Id  == id).ToList();
             return Ok(examQuestions);
         }
-
-
     }
 }

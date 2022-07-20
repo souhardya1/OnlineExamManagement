@@ -13,6 +13,24 @@
 <br />
 
 <div class="container-fluid">
+    @{ 
+        var endTime = DateTime.Now.AddSeconds(60);
+        var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.Now.Ticks).TotalSeconds;
+        
+      }
+
+    <div style="float:right;margin-right:100px" >
+        Time Remaining: <h1 id="secRemaining" class="text-danger"></h1>
+    </div>
+
+
+
+
+
+
+
+
+
     <h4><b>Q: @Model.Ques</b></h4>
     <br />
     <div class="container">
@@ -24,12 +42,12 @@
             @{
                 if (ViewData["QuestionIndex"].ToString() != "10")
                 {
-                    <input type="submit" value="Submit" class="btn btn-danger" />
+                    <input id="q_submit" type="submit" value="Submit" class="btn btn-danger" />
                 }
                 else if (ViewData["QuestionIndex"].ToString() == "10")
                 {
 
-                    <input type="submit" value="Submit and Finish" class="btn btn-danger" />
+                    <input id="q_submit" type="submit" value="Submit and Finish" class="btn btn-danger" />
                 }
             }
         </form>
@@ -42,6 +60,24 @@
 @section scripts{
 
     <script type="text/javascript">
+        var remSeconds = @timeRemaining;
+        function startTick() {
+            document.getElementById("secRemaining").innerText = remSeconds;
+            var _tick = setInterval(function () {
+                if (remSeconds > 0) {
+                    remSeconds = remSeconds - 1;
+                    document.getElementById("secRemaining").innerText = remSeconds;
+
+                } else {
+
+                    document.getElementById("q_submit").click();
+                    clearInterval(_tick);
+                }
+            }, 1000);
+      
+        }
+        startTick();
+
         function preventBack() { window.history.forward(); }
         setTimeout("preventBack()", 0);
         window.onunload = function () { null }

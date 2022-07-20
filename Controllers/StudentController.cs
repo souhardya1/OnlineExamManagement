@@ -97,9 +97,6 @@ namespace OnlineExamManagement.Controllers
 
                         Student stud = db.Students.Where(x => x.Email == s.Email).FirstOrDefault();
 
-
-
-
                         Session["userId"] = stud.Id;
 
                         if (stud.Marks4 == null)
@@ -111,19 +108,13 @@ namespace OnlineExamManagement.Controllers
                             Session["IsEligible"] = "0";  // no max number of exams completed
 
                         }
-
-
                         return RedirectToAction("AvailableExams");
                     }
                     else
                     {
                         ViewBag.ErrorMessage = "Email ID and Passwords Incorrect. please register";
                         return View();
-                    }
-
-                
-
-                
+                    }        
             }
             catch (Exception e)
             {
@@ -141,15 +132,12 @@ namespace OnlineExamManagement.Controllers
             {
                 if(cred.Password == s.Password)
                 {
-                    System.Diagnostics.Debug.WriteLine("c " + cred.Password + s.Password +" s");
                     return true;
                 }
                 else
                 {
-                    System.Diagnostics.Debug.Write("c " + cred.Password + s.Password + " s");
                     return false;
                 }
-               
             }
             else
             {
@@ -213,9 +201,6 @@ namespace OnlineExamManagement.Controllers
                 string apiUrl = "https://localhost:44301/api/Questionapi/" + id;
                 client.BaseAddress = new Uri(apiUrl);
                 var response = client.GetAsync(apiUrl);
-
-
-
                 response.Wait();
 
                 var test = response.Result;
@@ -287,16 +272,6 @@ namespace OnlineExamManagement.Controllers
                 var questionlst = db.Questions.Where(x => x.Course.Id == courseid).ToList();
                 var question = questionlst[qid];
 
-                //System.Diagnostics.Debug.WriteLine(url.Length);
-                //System.Diagnostics.Debug.WriteLine(question.Correct);
-                //System.Diagnostics.Debug.WriteLine(qid);
-                //System.Diagnostics.Debug.WriteLine(question.Correct);
-                //System.Diagnostics.Debug.WriteLine(choice);
-                //System.Diagnostics.Debug.WriteLine(Marks.Obtained);
-                //bool what = (question.Correct.ToLower() == choice.ToLower());
-                //System.Diagnostics.Debug.WriteLine(what);
-                //System.Diagnostics.Debug.WriteLine("hehe");
-
                 Marks.c = Marks.c + 1;
                 if (Marks.c <= 10)
                 {
@@ -306,7 +281,6 @@ namespace OnlineExamManagement.Controllers
                         {
                             Marks.Obtained = Marks.Obtained + 10;
                         }
-                        //System.Diagnostics.Debug.WriteLine(Marks.Obtained);
                     }
                 }
                 return RedirectToAction("MainExam");
@@ -345,7 +319,6 @@ namespace OnlineExamManagement.Controllers
                     HttpClient client = new HttpClient();
                     var url = "https://localhost:44301/api/Studentapi/" + id.ToString();
                     client.BaseAddress = new Uri(url);
-                    System.Diagnostics.Debug.WriteLine("result id is", id.ToString());
                     var response = client.PutAsJsonAsync<int>(url, id);
                     response.Wait();
 
