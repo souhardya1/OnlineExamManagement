@@ -10,6 +10,7 @@ using System.Net.Http;
 namespace OnlineExamManagement.Controllers
 {
     [HandleError]
+
     public class StudentController : Controller
     {
         MyDbContext db = new MyDbContext();
@@ -90,15 +91,17 @@ namespace OnlineExamManagement.Controllers
 
                     if (IsValid(s))
                     {
+                        
                         FormsAuthentication.SetAuthCookie(s.Email.ToString(), false);
                         Session["studentEmail"] = s.Email.ToString();
 
                         Student stud = db.Students.Where(x => x.Email == s.Email).FirstOrDefault();
 
 
+
+
                         Session["userId"] = stud.Id;
-                        //System.Diagnostics.Debug.WriteLine(s.Id);
-                        //System.Diagnostics.Debug.WriteLine(s.Email);
+
                         if (stud.Marks4 == null)
                         {
                             Session["IsEligible"] = "1";  // yes eligible
@@ -108,8 +111,7 @@ namespace OnlineExamManagement.Controllers
                             Session["IsEligible"] = "0";  // no max number of exams completed
 
                         }
-                        //System.Diagnostics.Debug.WriteLine(".smarks4 is ",stud.Marks4);
-                        //System.Diagnostics.Debug.WriteLine("iseligible is: ",Session["IsEligible"].ToString());
+
 
                         return RedirectToAction("AvailableExams");
                     }
@@ -137,7 +139,17 @@ namespace OnlineExamManagement.Controllers
                         FirstOrDefault();
             if (cred != null)
             {
-                return (s.Email == cred.Email && s.Password == cred.Password);
+                if(cred.Password == s.Password)
+                {
+                    System.Diagnostics.Debug.WriteLine("c " + cred.Password + s.Password +" s");
+                    return true;
+                }
+                else
+                {
+                    System.Diagnostics.Debug.Write("c " + cred.Password + s.Password + " s");
+                    return false;
+                }
+               
             }
             else
             {
